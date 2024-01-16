@@ -1,3 +1,4 @@
+using Platformer.Effects;
 using UnityEngine;
 using static Platformer.Extensions.EditorExtensions;
 
@@ -10,6 +11,8 @@ namespace Platformer.Units
         private Animator _animator;
         [SerializeField, ReadOnly]
         private SpriteRenderer _sprite;
+        [SerializeField]
+        private SecondJump _secondJumpEffect;
 
         [HideInInspector]
         public bool _isGrounded;
@@ -46,7 +49,7 @@ namespace Platformer.Units
             _animator.SetFloat(_IDYSpeed, _YSpeed);
             _animator.SetBool(_IDGrouded, _isGrounded);
         }
-        public void RunView(Vector2 direction)
+        public void Run(Vector2 direction)
         {
             if (direction.x == 0)
                 _animator.SetBool(_IDIsRun, false);
@@ -62,18 +65,22 @@ namespace Platformer.Units
                 _sprite.flipX = true;
             }
         }
-        public void AttackView()
+        public void Attack()
         {
             _animator.SetTrigger(_IDAttack);
 
         }
-        public void BlockView(bool isBlock)
+        public void Block(bool isBlock)
         {
             _animator.SetBool(_IDIsBlock, isBlock);
         }
-        public void JumpView()
+        public void Jump()
         {
             _animator.SetTrigger(_IDJump);
+        }
+        public void SecondJump()
+        {
+            _secondJumpEffect.PlayEffect();
         }
         public void EndAnyAnimation()
         {

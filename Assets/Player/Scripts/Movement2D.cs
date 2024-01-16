@@ -13,7 +13,7 @@ namespace Platformer.Units
         [SerializeField, ReadOnly]
         private Rigidbody2D _rb;
         [SerializeField, ReadOnly]
-        private PlayerInputComponent _input;
+        private PlayerInputComponent _input;// todo убрать отсюда инпут, сделать сцепку инпут -> мув
         [SerializeField, ReadOnly]
         private ViewComponent _view;
 
@@ -21,6 +21,9 @@ namespace Platformer.Units
         private float _moveSpeed;
         [SerializeField, Range(0f, 100f)]
         private float _jumpForce;
+
+        private bool _hasSecondJump;
+        private bool _isGrounded;
 
 
         private void OnValidate()
@@ -43,30 +46,49 @@ namespace Platformer.Units
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            //todo сделать через буффер на ногах
+            //смотреть слои, матрица колизий
             _view._isGrounded = true;
+            _hasSecondJump = true;
+            _isGrounded = true;
         }
         private void OnCollisionExit2D(Collision2D collision)
         {
             _view._isGrounded = false;
+            _isGrounded = false;
         }
         private void OnMove(Vector2 direction)
         {
             _rb.velocity = new Vector2(direction.x * _moveSpeed * Time.deltaTime * Constans.PlayerMoveScale, _rb.velocity.y);
-            _view.RunView(direction);
+            _view.Run(direction);
         }
         public void OnJump(CallbackContext context)
         {
+            //ground false && second false  персонаж уже прыгнул 2 раза OK
+            //ground false && second true падение или второй прыжок OK
+            //ground true && second false  not posible
+            //ground true && second true  ---> первый прыжок
+            if (!_isGrounded && !_hasSecondJump)
+            {
+                return;
+            }
+            else if (!_isGrounded && _hasSecondJump)
+            {
+                _hasSecondJump = false;
+                _view.SecondJump();
+                //todo анимация второг прыжка, эффектик там _view.SecondJump
+            }
             _rb.AddForce(Vector2.up*_jumpForce* Constans.PlayerJumpScale, ForceMode2D.Force);
             _view._isGrounded = false;
-            _view.JumpView();
+            _view.Jump();
         }
         public void OnAttack(CallbackContext context)
         {
-            _view.AttackView();
+            _view.Attack();
         }
         public void OnBlock(bool isBlock)
         {
-            _view.BlockView(isBlock);
+            _view.Block(isBlock);
         }
     }
 
