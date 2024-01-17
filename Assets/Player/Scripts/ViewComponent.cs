@@ -1,4 +1,3 @@
-using Platformer.Effects;
 using UnityEngine;
 using static Platformer.Extensions.EditorExtensions;
 
@@ -11,8 +10,6 @@ namespace Platformer.Units
         private Animator _animator;
         [SerializeField, ReadOnly]
         private SpriteRenderer _sprite;
-        [SerializeField]
-        private SecondJump _secondJumpEffect;
 
         [HideInInspector]
         public bool _isGrounded;
@@ -80,7 +77,7 @@ namespace Platformer.Units
         }
         public void SecondJump()
         {
-            _secondJumpEffect.PlayEffect();
+            _animator.SetTrigger("SecondJump");
         }
         public void EndAnyAnimation()
         {

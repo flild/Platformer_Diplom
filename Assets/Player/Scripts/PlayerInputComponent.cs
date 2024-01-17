@@ -29,6 +29,10 @@ namespace Platformer.Units.Player
 
 
         }
+        private void Update()
+        {
+            _movement.OnMove(GetMoveDirection());
+        }
         private void OnDisable()
         {
             _controller.Player.Jump.performed -= _movement.OnJump;
