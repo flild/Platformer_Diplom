@@ -22,6 +22,8 @@ namespace Platformer.Units
         private int _IDYSpeed;
         private int _IDJump;
         private int _IDGrouded;
+        private int _IDSecondJump;
+        private int _IDdeath;
 
         private void OnValidate()
         {
@@ -40,6 +42,8 @@ namespace Platformer.Units
             _IDYSpeed = Animator.StringToHash("YSpeed");
             _IDGrouded = Animator.StringToHash("Grounded");
             _IDJump = Animator.StringToHash("Jump");
+            _IDSecondJump = Animator.StringToHash("SecondJump");
+            _IDdeath = Animator.StringToHash("Death");
         }
         private void Update()
         {
@@ -77,11 +81,15 @@ namespace Platformer.Units
         }
         public void SecondJump()
         {
-            _animator.SetTrigger("SecondJump");
+            _animator.SetTrigger(_IDSecondJump);
         }
         public void EndAnyAnimation()
         {
             //todo
+        }
+        public void Death()
+        {
+            _animator.SetTrigger(_IDdeath);
         }
     }
 }

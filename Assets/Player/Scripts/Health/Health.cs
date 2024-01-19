@@ -25,8 +25,12 @@ namespace Platformer.Units.PlayerSpace
         }
 
         void ClampHealth()
-        {
-            _player.Stats.Health = Mathf.Clamp(_player.Stats.Health, 0, _player.Stats.MaxHealth);
+        {   
+            if(_player.Stats.Health>=0)
+            {
+                _player.OnPlayerDeath();
+            }
+                _player.Stats.Health = Mathf.Clamp(_player.Stats.Health, 0, _player.Stats.MaxHealth);
             _healthBar.UpdateHeartsHUD();
         }
     }
