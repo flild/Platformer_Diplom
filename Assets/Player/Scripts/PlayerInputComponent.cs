@@ -1,7 +1,7 @@
 using UnityEngine;
 using static Platformer.Extensions.EditorExtensions;
 
-namespace Platformer.Units.Player
+namespace Platformer.Units.PlayerSpace
 {
     [RequireComponent(typeof(Movement2D))]
     public class PlayerInputComponent : MonoBehaviour

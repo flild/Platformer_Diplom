@@ -2,8 +2,9 @@ using UnityEngine;
 using Platformer.Extensions;
 using static UnityEngine.InputSystem.InputAction;
 using System;
-using Platformer.Units.Player;
+using Platformer.Units.PlayerSpace;
 using static Platformer.Extensions.EditorExtensions;
+using Zenject;
 
 namespace Platformer.Units
 {
@@ -15,12 +16,8 @@ namespace Platformer.Units
 
         [SerializeField, ReadOnly]
         private ViewComponent _view;
-
-        [SerializeField, Range(0f,10f), Space]
-        private float _moveSpeed;
-        [SerializeField, Range(0f, 100f)]
-        private float _jumpForce;
-
+        [Inject]
+        private Player _player;
         private bool _hasSecondJump;
         private bool _isGrounded;
 
@@ -41,8 +38,7 @@ namespace Platformer.Units
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            //todo сделать через буффер на ногах
-            //смотреть слои, матрица колизий
+            
             _view._isGrounded = true;
             _hasSecondJump = true;
             _isGrounded = true;
@@ -54,7 +50,10 @@ namespace Platformer.Units
         }
         public void OnMove(Vector2 direction)
         {
-            _rb.velocity = new Vector2(direction.x * _moveSpeed * Time.deltaTime * Constans.PlayerMoveScale, _rb.velocity.y);
+            _rb.velocity = new Vector2(direction.x * _player.Stats.speed * Time.deltaTime * Constans.PlayerMoveScale, _rb.velocity.y);
+             var temp = _rb.velocity;
+            temp.x = Math.Clamp(_rb.velocity.x, -_player.Stats.MaxSpeed, _player.Stats.MaxSpeed);
+            _rb.velocity = temp;
             _view.Run(direction);
         }
         public void OnJump(CallbackContext context)
@@ -80,7 +79,7 @@ namespace Platformer.Units
                 _view.SecondJump();
                 //todo анимация второг прыжка, эффектик там _view.SecondJump
             }
-            _rb.AddForce(Vector2.up*_jumpForce* Constans.PlayerJumpScale, ForceMode2D.Force);
+            _rb.AddForce(Vector2.up*_player.Stats.JumpForce* Constans.PlayerJumpScale, ForceMode2D.Force);
             _view._isGrounded = false;
 
         }

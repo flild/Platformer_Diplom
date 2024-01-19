@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Platformer.Units.Player
+namespace Platformer.Units.PlayerSpace
 {
     public class CameraMove : MonoBehaviour
     {
