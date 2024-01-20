@@ -26,7 +26,7 @@ namespace Platformer.Units.PlayerSpace
 
         void ClampHealth()
         {   
-            if(_player.Stats.Health>=0)
+            if(_player.Stats.Health<=0)
             {
                 _player.OnPlayerDeath();
             }

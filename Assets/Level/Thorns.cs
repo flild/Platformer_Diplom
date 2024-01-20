@@ -20,7 +20,7 @@ namespace Platformer.Level
             {
                 _blood.transform.position = _player.transform.position;
                 _blood.Play();
-                _player.Health.TakeDamage(0.5f);
+                _player.TakeDamage(0.5f);
             }
         }
     }
