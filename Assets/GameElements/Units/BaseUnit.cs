@@ -27,7 +27,7 @@ namespace Platformer.Units
         [SerializeField]
         protected float _PatrolDelay;
         protected Vector2 _currentPoint;
-        private float _scanDelay = 3;
+        private float _scanDelay = 1;
         [SerializeField]
         private float _minDetectionDistance;
         protected bool _IsPatroling = true;
@@ -48,7 +48,7 @@ namespace Platformer.Units
             if (_sprite == null)
                 _sprite = GetComponent<SpriteRenderer>();
         }
-        private void OnDrawGizmos()
+        protected virtual void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
             Gizmos.DrawCube(_patrolPoint1, new Vector3(0.4f, 0.4f, 0f));
@@ -56,6 +56,7 @@ namespace Platformer.Units
             Gizmos.color = new Color(1f,0f,0f,0.2f);
             Gizmos.DrawWireSphere(transform.position, _minDetectionDistance);
         }
+
         public virtual void TakeDamage(float value)
         {
             _health= _health - value;
@@ -68,6 +69,11 @@ namespace Platformer.Units
         {
 
         }
+        /// <summary>
+        /// Ќужно отключать патруль
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <param name="animated">по умолчанию true, поставить false, если движение происходит не своим ходом</param>
         protected void Move(Vector2 direction, bool animated = true)
         {
             if (direction.x == 0)
@@ -133,6 +139,7 @@ namespace Platformer.Units
             SwitchCurrentPoint();
             yield return null;
         }
+        //todo death
     }
 }
 

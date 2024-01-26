@@ -23,7 +23,6 @@ namespace Platformer.Units.PlayerSpace
             heartContainers = new GameObject[(int)_player.Stats.MaxHealth];
             heartFills = new Image[(int)_player.Stats.MaxHealth];
 
-            //удалить  
             InstantiateHeartContainers();
             UpdateHeartsHUD();
         }
