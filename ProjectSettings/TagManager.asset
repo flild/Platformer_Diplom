@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - Post processing
   - 
   - 
   - 
@@ -41,6 +41,18 @@ TagManager:
   - name: BackGround
     uniqueID: 3717856631
     locked: 0
+  - name: BackgrounDecoration
+    uniqueID: 1480813189
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Decoration
+    uniqueID: 3237159633
+    locked: 0
+  - name: Player
+    uniqueID: 1333969293
+    locked: 0
+  - name: UpperDecoration
+    uniqueID: 2907716575
     locked: 0
