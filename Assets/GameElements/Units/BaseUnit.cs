@@ -7,14 +7,18 @@ using Zenject;
 namespace Platformer.Units
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(Animator), typeof(SpriteRenderer))]
-    public abstract class BaseUnit : MonoBehaviour
+    public abstract class BaseUnit : MonoBehaviour, IMonster
     {
         [SerializeField,Range(0f, 100f)]
         protected float _health;
         [SerializeField, Range(0f, 100f)]
         protected float _Attackdamage;
+        [SerializeField]
+        protected int _killBounty;
         [Inject]
         protected Player _player;
+        [Inject]
+        private CoinManager _coinManager;
         protected Animator _animator;
         protected Rigidbody2D _rb;
         protected SpriteRenderer _sprite;
@@ -62,7 +66,7 @@ namespace Platformer.Units
             _health= _health - value;
             if(_health <= 0 )
             {
-                Destroy(gameObject);
+                Death();
             }
         }
         protected virtual void Attack()
@@ -139,7 +143,12 @@ namespace Platformer.Units
             SwitchCurrentPoint();
             yield return null;
         }
-        //todo death
+
+        public void Death()
+        {
+            _coinManager.SpawnCoins(_killBounty,transform.position);
+            Destroy(gameObject);
+        }
     }
 }
 

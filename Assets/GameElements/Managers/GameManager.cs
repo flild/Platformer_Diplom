@@ -8,17 +8,21 @@ namespace Platformer
     {
         [SerializeField]
         private Player _player;
+        [SerializeField]
+        private CoinManager _coinManager;
 
         public override void InstallBindings()
         {
             Container.BindInstance(_player).AsSingle();
+            Container.BindInstance(_coinManager).AsSingle();
 
         }
 
         private void OnValidate()
         {
-            if (_player == null)
-                _player = FindObjectOfType<Player>();
+            _player ??= FindObjectOfType<Player>();
+            if (_coinManager == null)
+                Debug.LogError("_coinManager on GameMager is empty");
         }
     }
 }
@@ -34,6 +38,10 @@ namespace Platformer
  * 12. хит реакт перса
  * 13. вынести функцию патруля отдельно
  * 15. пофиксить, что после пржка в стену персонаж остаётся в состоянии полета
+ * 16. Сделать пул монеток
+ * 17. менеджер монет причем статичный
+ * 18. Доделать DeathZone
+ * 
  * 
  * 
  * 

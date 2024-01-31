@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 4
   _Attackdamage: 0.5
+  _killBounty: 3
   _moveSpeed: 120
   _patrolPoint1: {x: 50.13, y: 0}
   _patrolPoint2: {x: 64.14, y: 0}

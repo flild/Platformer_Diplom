@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 1
   _Attackdamage: 1
+  _killBounty: 1
   _moveSpeed: 120
   _patrolPoint1: {x: -1.41, y: -3.54}
   _patrolPoint2: {x: 2.19, y: -3.57}
