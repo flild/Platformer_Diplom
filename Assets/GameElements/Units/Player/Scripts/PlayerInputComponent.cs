@@ -1,4 +1,6 @@
+using Platformer.Effects;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static Platformer.Extensions.EditorExtensions;
 
 namespace Platformer.Units.PlayerSpace
@@ -9,6 +11,9 @@ namespace Platformer.Units.PlayerSpace
         private PlayerController _controller;
         [SerializeField, ReadOnly]
         private Movement2D _movement;
+        //todo временное решение
+        [SerializeField]
+        private Lighting _pref;
 
         private void OnValidate()
         {
@@ -27,6 +32,9 @@ namespace Platformer.Units.PlayerSpace
             _controller.Player.Block.started += OnStartBlock;
             _controller.Player.Block.canceled += OnEndBlock;
 
+            //todo временно
+            _controller.Player.FirstSkill.performed += FirstSkill;
+
 
         }
         private void Update()
@@ -39,21 +47,26 @@ namespace Platformer.Units.PlayerSpace
             _controller.Player.Attack.performed -= _movement.OnAttack;
             _controller.Player.Block.started -= OnStartBlock;
             _controller.Player.Block.performed -= OnEndBlock;
+            _controller.Player.FirstSkill.performed -= FirstSkill;
             _controller.Disable();
         }
         public Vector2 GetMoveDirection()
         {
             return _controller.Player.Move.ReadValue<Vector2>();
         }
-        private void OnStartBlock(UnityEngine.InputSystem.InputAction.CallbackContext context)
+        private void OnStartBlock(InputAction.CallbackContext context)
         {
             _movement.OnBlock(true);
         }
-        private void OnEndBlock(UnityEngine.InputSystem.InputAction.CallbackContext context)
+        private void OnEndBlock(InputAction.CallbackContext context)
         {
             _movement.OnBlock(false);
         }
 
+        private void FirstSkill(InputAction.CallbackContext context)
+        {
+            _pref.gameObject.SetActive(true);
+        }
     }
 
 }

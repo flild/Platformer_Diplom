@@ -1,4 +1,5 @@
 using Platformer.Level;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -8,7 +9,11 @@ namespace Platformer
     {
         [SerializeField]
         private Coin _prefabCoin;
+        [SerializeField]
+        private TMP_Text _coinsHUD;
         private ObjectPool<Coin> _coinPool;
+
+        private int _coinCount = 500;
         private void Start()
         {
             _coinPool = new ObjectPool<Coin>(
@@ -19,6 +24,23 @@ namespace Platformer
                 collectionCheck: false,
                 defaultCapacity: 5,
                 maxSize: 10);
+            UpdateCoinHud();
+        }
+        public void AddCoinToPlayer(int value)
+        {
+            _coinCount += value;
+            UpdateCoinHud();
+        }
+        private void UpdateCoinHud()
+        {
+            _coinsHUD.text = _coinCount.ToString();
+        }
+        private void PlayerPickupCoin(Coin coin)
+        {
+            coin.PlayerTakeCoin -= PlayerPickupCoin;
+            AddCoinToPlayer(1);
+            ReturnCoin(coin);
+
         }
         public void SpawnCoins(int cout, Vector3 position)
         {
@@ -28,12 +50,12 @@ namespace Platformer
                 temp = _coinPool.Get();
                 temp.transform.position = position;
                 temp.pushCoin();
-                temp.PlayerTakeCoin += ReturnCoin;
+                temp.PlayerTakeCoin += PlayerPickupCoin;
             }
         }
+
         public void ReturnCoin(Coin coin)
         {
-            coin.PlayerTakeCoin -= ReturnCoin;
             _coinPool.Release(coin);
         }
         

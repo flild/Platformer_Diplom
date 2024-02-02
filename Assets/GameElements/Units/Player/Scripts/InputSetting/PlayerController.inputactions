@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "New action",
+                    "name": "FirstSkill",
                     "type": "Button",
                     "id": "25a64389-519c-4ad5-aef6-1420be02fa61",
                     "expectedControlType": "Button",
@@ -198,11 +198,11 @@
                 {
                     "name": "",
                     "id": "bad9adad-9708-4d35-bb9e-f01fb537c400",
-                    "path": "",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "FirstSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
