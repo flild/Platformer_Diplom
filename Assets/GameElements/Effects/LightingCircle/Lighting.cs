@@ -13,15 +13,23 @@ namespace Platformer.Effects
 
         [SerializeField]
         private float _duration;
-
+        [SerializeField]
+        private float _damage;
+        [SerializeField]
+        private float _damageEffectDuration;
+        [SerializeField]
+        private ParticleSystem _damageEffectPrefab;
         [SerializeField]
         private List<Transform> _scaled;
-        
+
+        public float Damage { get { return _damage; } }
+        public float DamageEffectDuration { get { return _damageEffectDuration; } }
         private void OnEnable()
         {
-            StartCoroutine(ScalinScaleSize());
+            StartCoroutine(ScalingScaleSize());
+            
         }
-        private IEnumerator ScalinScaleSize()
+        private IEnumerator ScalingScaleSize()
         {
             float time = 0;
             float temp = 0;
@@ -39,6 +47,8 @@ namespace Platformer.Effects
             yield return null;
             gameObject.SetActive(false);
         }
+
     }
+    
 }
 

@@ -1,4 +1,5 @@
 using Platformer.Units.PlayerSpace;
+using System;
 using System.Collections;
 using UnityEngine;
 using Zenject;
@@ -35,6 +36,8 @@ namespace Platformer.Units
         [SerializeField]
         private float _minDetectionDistance;
         protected bool _IsPatroling = true;
+
+        public event EventHandler<IMonster> OnUnitDeathEvent;
 
         private void OnEnable()
         {
@@ -143,12 +146,18 @@ namespace Platformer.Units
             SwitchCurrentPoint();
             yield return null;
         }
-
+        public SpriteRenderer GetSprite()
+        {
+            return _sprite;
+        }
         public void Death()
         {
             _coinManager.SpawnCoins(_killBounty,transform.position);
+            OnUnitDeathEvent?.Invoke(this, this);
             Destroy(gameObject);
         }
+
+
     }
 }
 
