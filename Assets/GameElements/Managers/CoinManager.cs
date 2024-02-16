@@ -26,9 +26,23 @@ namespace Platformer
                 maxSize: 10);
             UpdateCoinHud();
         }
+        public int GetPlayerCoinCount()
+        {
+            return _coinCount;
+        }
         public void AddCoinToPlayer(int value)
         {
             _coinCount += value;
+            UpdateCoinHud();
+        }
+        public void ChangeCoinValue(int value)
+        {
+            _coinCount = value;
+            UpdateCoinHud();
+        }
+        public void SpendCoin(int value)
+        {
+            _coinCount -= value;
             UpdateCoinHud();
         }
         private void UpdateCoinHud()
@@ -42,6 +56,7 @@ namespace Platformer
             ReturnCoin(coin);
 
         }
+
         public void SpawnCoins(int cout, Vector3 position)
         {
             Coin temp;
