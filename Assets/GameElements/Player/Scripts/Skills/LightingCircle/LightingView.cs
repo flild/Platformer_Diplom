@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Platformer.Units.PlayerSpace.Skill
 {
-    public class LightingView: SkillBaseView
+    public class LightingView: MonoBehaviour
     {
         // нужно откуда то, включать
         [SerializeField]

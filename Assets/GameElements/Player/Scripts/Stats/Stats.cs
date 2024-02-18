@@ -23,7 +23,7 @@ namespace Platformer.Units.PlayerSpace
         public ReactiveProperty<float> Damage = new();
         public ReactiveProperty<float> BlockDamage = new();
         //todo Luck
-
+        public bool IsBabbled = false;
         private void Awake()
         {
             Init();

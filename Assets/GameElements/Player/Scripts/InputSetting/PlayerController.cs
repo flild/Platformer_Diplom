@@ -80,6 +80,24 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThirdSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""192c6370-5507-43f2-bc1a-fdf1ba857d2d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FourthSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""aa7f8d67-5607-44a6-9700-40e4111d5f8b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,6 +265,76 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""action"": ""SecondSkill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68956f86-017b-4d2a-93c4-f9098fbadf81"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThirdSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5752ad5-b8cf-4c6a-9b35-eeeb9b796f6d"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FourthSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""56cac8f0-abd3-437d-b9f1-8f7df59b089c"",
+            ""actions"": [
+                {
+                    ""name"": ""Shop"",
+                    ""type"": ""Button"",
+                    ""id"": ""d752f87e-4f9a-4c6d-8c9f-fe54be100614"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CloseCurrentWindow"",
+                    ""type"": ""Button"",
+                    ""id"": ""e79d897b-2dbc-44ec-9f97-47e536742377"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e16c2fdb-3b07-450d-a0d1-aae33cb99123"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c5acce9-d0ee-4ee8-abb9-cfe306ae8d46"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseCurrentWindow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -261,6 +349,12 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
         m_Player_FirstSkill = m_Player.FindAction("FirstSkill", throwIfNotFound: true);
         m_Player_SecondSkill = m_Player.FindAction("SecondSkill", throwIfNotFound: true);
+        m_Player_ThirdSkill = m_Player.FindAction("ThirdSkill", throwIfNotFound: true);
+        m_Player_FourthSkill = m_Player.FindAction("FourthSkill", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Shop = m_UI.FindAction("Shop", throwIfNotFound: true);
+        m_UI_CloseCurrentWindow = m_UI.FindAction("CloseCurrentWindow", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -328,6 +422,8 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Block;
     private readonly InputAction m_Player_FirstSkill;
     private readonly InputAction m_Player_SecondSkill;
+    private readonly InputAction m_Player_ThirdSkill;
+    private readonly InputAction m_Player_FourthSkill;
     public struct PlayerActions
     {
         private @PlayerController m_Wrapper;
@@ -338,6 +434,8 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         public InputAction @Block => m_Wrapper.m_Player_Block;
         public InputAction @FirstSkill => m_Wrapper.m_Player_FirstSkill;
         public InputAction @SecondSkill => m_Wrapper.m_Player_SecondSkill;
+        public InputAction @ThirdSkill => m_Wrapper.m_Player_ThirdSkill;
+        public InputAction @FourthSkill => m_Wrapper.m_Player_FourthSkill;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -365,6 +463,12 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @SecondSkill.started += instance.OnSecondSkill;
             @SecondSkill.performed += instance.OnSecondSkill;
             @SecondSkill.canceled += instance.OnSecondSkill;
+            @ThirdSkill.started += instance.OnThirdSkill;
+            @ThirdSkill.performed += instance.OnThirdSkill;
+            @ThirdSkill.canceled += instance.OnThirdSkill;
+            @FourthSkill.started += instance.OnFourthSkill;
+            @FourthSkill.performed += instance.OnFourthSkill;
+            @FourthSkill.canceled += instance.OnFourthSkill;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -387,6 +491,12 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @SecondSkill.started -= instance.OnSecondSkill;
             @SecondSkill.performed -= instance.OnSecondSkill;
             @SecondSkill.canceled -= instance.OnSecondSkill;
+            @ThirdSkill.started -= instance.OnThirdSkill;
+            @ThirdSkill.performed -= instance.OnThirdSkill;
+            @ThirdSkill.canceled -= instance.OnThirdSkill;
+            @FourthSkill.started -= instance.OnFourthSkill;
+            @FourthSkill.performed -= instance.OnFourthSkill;
+            @FourthSkill.canceled -= instance.OnFourthSkill;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -404,6 +514,60 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+    private readonly InputAction m_UI_Shop;
+    private readonly InputAction m_UI_CloseCurrentWindow;
+    public struct UIActions
+    {
+        private @PlayerController m_Wrapper;
+        public UIActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Shop => m_Wrapper.m_UI_Shop;
+        public InputAction @CloseCurrentWindow => m_Wrapper.m_UI_CloseCurrentWindow;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void AddCallbacks(IUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+            @Shop.started += instance.OnShop;
+            @Shop.performed += instance.OnShop;
+            @Shop.canceled += instance.OnShop;
+            @CloseCurrentWindow.started += instance.OnCloseCurrentWindow;
+            @CloseCurrentWindow.performed += instance.OnCloseCurrentWindow;
+            @CloseCurrentWindow.canceled += instance.OnCloseCurrentWindow;
+        }
+
+        private void UnregisterCallbacks(IUIActions instance)
+        {
+            @Shop.started -= instance.OnShop;
+            @Shop.performed -= instance.OnShop;
+            @Shop.canceled -= instance.OnShop;
+            @CloseCurrentWindow.started -= instance.OnCloseCurrentWindow;
+            @CloseCurrentWindow.performed -= instance.OnCloseCurrentWindow;
+            @CloseCurrentWindow.canceled -= instance.OnCloseCurrentWindow;
+        }
+
+        public void RemoveCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -412,5 +576,12 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         void OnBlock(InputAction.CallbackContext context);
         void OnFirstSkill(InputAction.CallbackContext context);
         void OnSecondSkill(InputAction.CallbackContext context);
+        void OnThirdSkill(InputAction.CallbackContext context);
+        void OnFourthSkill(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnShop(InputAction.CallbackContext context);
+        void OnCloseCurrentWindow(InputAction.CallbackContext context);
     }
 }

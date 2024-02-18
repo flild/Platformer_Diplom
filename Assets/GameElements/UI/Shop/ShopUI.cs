@@ -1,12 +1,12 @@
 using UnityEngine;
 using TMPro;
-using Platformer.Extensions;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using Platformer.UI;
 
 namespace Platformer.Shop
 {
-    public class ShopUI : MonoBehaviour
+    public class ShopUI : MonoBehaviour, IClosebleWindow
     {
 
         [SerializeField]
@@ -44,6 +44,7 @@ namespace Platformer.Shop
 
         private Color _UpgradedPointColor = new Color(143, 255, 121, 255);
         private int _maxSkillLevel = 3;
+
 
         public void Init(ShopVM shopVM)
         {

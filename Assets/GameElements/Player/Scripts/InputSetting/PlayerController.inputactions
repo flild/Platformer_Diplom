@@ -58,6 +58,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ThirdSkill",
+                    "type": "Button",
+                    "id": "192c6370-5507-43f2-bc1a-fdf1ba857d2d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FourthSkill",
+                    "type": "Button",
+                    "id": "aa7f8d67-5607-44a6-9700-40e4111d5f8b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -223,6 +241,76 @@
                     "processors": "",
                     "groups": "",
                     "action": "SecondSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "68956f86-017b-4d2a-93c4-f9098fbadf81",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThirdSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5752ad5-b8cf-4c6a-9b35-eeeb9b796f6d",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FourthSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "56cac8f0-abd3-437d-b9f1-8f7df59b089c",
+            "actions": [
+                {
+                    "name": "Shop",
+                    "type": "Button",
+                    "id": "d752f87e-4f9a-4c6d-8c9f-fe54be100614",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CloseCurrentWindow",
+                    "type": "Button",
+                    "id": "e79d897b-2dbc-44ec-9f97-47e536742377",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e16c2fdb-3b07-450d-a0d1-aae33cb99123",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5c5acce9-d0ee-4ee8-abb9-cfe306ae8d46",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseCurrentWindow",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

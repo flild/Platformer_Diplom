@@ -11,6 +11,8 @@ namespace Platformer.Units.PlayerSpace
         private ViewComponent _view;
         [SerializeField]
         private Collider2D _swordCollider;
+        [SerializeField]
+        private SpriteRenderer _sprite;
         // вынести хелс в отдельный файл, сделать всю логику там, сюда ссылку дать
         public Stats Stats { get { return _stats; } }
         private void OnValidate()
@@ -26,7 +28,10 @@ namespace Platformer.Units.PlayerSpace
         {
             _view.Death();
         }
-
+        public bool GetFlipX()
+        {
+            return _sprite.flipX;
+        }
         public void TakeDamage(float value)
         {
             _health.TakeDamage(value);

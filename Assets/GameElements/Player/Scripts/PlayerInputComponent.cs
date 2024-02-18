@@ -34,6 +34,8 @@ namespace Platformer.Units.PlayerSpace
 
             _controller.Player.FirstSkill.performed += FirstSkill;
             _controller.Player.SecondSkill.performed += SecondSkill;
+            _controller.Player.ThirdSkill.performed += ThirdSkill;
+            _controller.Player.FourthSkill.performed += FourthSkill;
 
 
         }
@@ -49,6 +51,8 @@ namespace Platformer.Units.PlayerSpace
             _controller.Player.Block.performed -= OnEndBlock;
             _controller.Player.FirstSkill.performed -= FirstSkill;
             _controller.Player.FirstSkill.performed -= SecondSkill;
+            _controller.Player.ThirdSkill.performed -= ThirdSkill;
+            _controller.Player.FourthSkill.performed -= FourthSkill;
             _controller.Disable();
         }
         public Vector2 GetMoveDirection()
@@ -71,6 +75,14 @@ namespace Platformer.Units.PlayerSpace
         private void SecondSkill(InputAction.CallbackContext context)
         {
             _skillManager.UseSkill(Extensions.SkillType.Heal);
+        }
+        private void ThirdSkill(InputAction.CallbackContext context)
+        {
+            _skillManager.UseSkill(Extensions.SkillType.IceComet);
+        }
+        private void FourthSkill(InputAction.CallbackContext context)
+        {
+            _skillManager.UseSkill(Extensions.SkillType.Bubble);
         }
     }
 

@@ -2,6 +2,8 @@
 using Platformer.Units.PlayerSpace;
 using Zenject;
 using UnityEngine;
+using Platformer.UI;
+using UnityEngine.InputSystem;
 
 namespace Platformer
 {
@@ -21,6 +23,9 @@ namespace Platformer
         private StatsUpgradeUI _statsUI;
         [SerializeField]
         private SkillManager _skillManager;
+        private PlayerController _controller;
+
+        private IClosebleWindow ActiveWindow;
         private void Start()
         {
             //Shop
@@ -30,6 +35,31 @@ namespace Platformer
             _shopUI.Init(_shopVM);
             _statsUI.Init(_statsVM);
 
+        }
+        private void OnEnable()
+        {
+            _controller = new PlayerController();
+            _controller.Enable();
+            _controller.UI.Shop.performed += OpenShop;
+            _controller.UI.CloseCurrentWindow.performed += CloseCurrentOpenWindow;
+        }
+        private void OnDisable()
+        {
+            _controller.Disable();
+            _controller.UI.Shop.performed -= OpenShop;
+            _controller.UI.CloseCurrentWindow.performed -= CloseCurrentOpenWindow;
+        }
+
+        private void OpenShop(InputAction.CallbackContext context)
+        {
+            _shopUI.gameObject.SetActive(true);
+            ActiveWindow = _shopUI;
+        }
+        private void CloseCurrentOpenWindow(InputAction.CallbackContext context)
+        {
+            if(ActiveWindow != null)
+                ActiveWindow.gameObject.SetActive(false);
+            ActiveWindow = null;
         }
     }
 }

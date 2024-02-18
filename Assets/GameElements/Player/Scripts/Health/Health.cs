@@ -5,8 +5,8 @@ namespace Platformer.Units.PlayerSpace
     public class Health : MonoBehaviour
     {
         private Player _player;
-        [SerializeField]
-        private HealthBarController _healthBar;
+
+
         private void OnValidate()
         {
             if (_player == null)
@@ -20,7 +20,10 @@ namespace Platformer.Units.PlayerSpace
 
         public void TakeDamage(float value)
         {
-            _player.Stats.Health.Value -= value;
+            if(!_player.Stats.IsBabbled)
+            {
+                _player.Stats.Health.Value -= value;
+            }
             ClampHealth();
         }
 

@@ -15,6 +15,10 @@ namespace Platformer
         private LightingView _lightingView;
         [SerializeField]
         private HealingView _healingView;
+        [SerializeField]
+        private IceCometView _cometView;
+        [SerializeField]
+        private BubbleView _bubbleView;
         [Inject]
         Player player;
         public Action<SkillType> ChangeSkillsLevel;
@@ -24,8 +28,8 @@ namespace Platformer
             _skillsMap = new Dictionary<SkillType, SkillBase>();
             _skillsMap.Add(SkillType.Lighting, new Lighting(_lightingView));
             _skillsMap.Add(SkillType.Heal, new Healing(_healingView, player));
-            _skillsMap.Add(SkillType.IceComet, new IceComet());
-            _skillsMap.Add(SkillType.Bubble, new IceComet());
+            _skillsMap.Add(SkillType.IceComet, new IceComet(_cometView));
+            _skillsMap.Add(SkillType.Bubble, new Bubble(_bubbleView, player.Stats));
         }
         private void Start()
         {

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3012609044143071139}
   - component: {fileID: 8416157306998380758}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4246697866725985478}
   - component: {fileID: 4510781182237196556}
   - component: {fileID: 5369877920593345710}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Slime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 1836108826664004658}
   - component: {fileID: 6227997647778335750}
   - component: {fileID: 4695352063171886136}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BloodPartSys
   m_TagString: Untagged
   m_Icon: {fileID: 0}
