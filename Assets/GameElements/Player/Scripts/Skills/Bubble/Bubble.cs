@@ -19,7 +19,7 @@ namespace Platformer.Units.PlayerSpace.Skill
         private void Init()
         {
             Damage = 0;
-            Level = 2;
+            Level = 0;
             _type = SkillType.Bubble;
             _baseDuration = 0.5f;
         }

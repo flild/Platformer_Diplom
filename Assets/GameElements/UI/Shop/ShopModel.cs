@@ -12,7 +12,7 @@ namespace Platformer.Shop
         public uint MaxHealthStep = 1;
         public uint DamageCostStep = 5;
         public uint DamageStep = 1;
-        public uint DamageBlockCostStep = 4;
+        public uint DamageBlockCostStep = 12;
         public float DamageBlockStep = 0.5f;
         public uint SpeedCostStep = 5;
         public uint SpeedStep = 1;
@@ -22,10 +22,10 @@ namespace Platformer.Shop
         public int CometLevelCostStep = 100;
         public int BubleLevelCostStep = 100;
 
-        public ReactiveProperty<uint> LightingLevel = new();
-        public ReactiveProperty<uint> HealingLevel = new();
-        public ReactiveProperty<uint> CometLevel = new();
-        public ReactiveProperty<uint> BubbleLevel = new();
+        public ReactiveProperty<int> LightingLevel = new();
+        public ReactiveProperty<int> HealingLevel = new();
+        public ReactiveProperty<int> CometLevel = new();
+        public ReactiveProperty<int> BubbleLevel = new();
 
         public ReactiveProperty<int> Coin = new();
 
@@ -33,7 +33,6 @@ namespace Platformer.Shop
         {
             _coinManager = coinManager;
             _skillManager = skillManager;
-
             Init();
         }
         public void Init()

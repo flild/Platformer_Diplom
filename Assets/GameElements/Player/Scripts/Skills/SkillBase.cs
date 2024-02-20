@@ -11,7 +11,7 @@ namespace Platformer.Units.PlayerSpace.Skill
             {
                 return Level > 0 ? true : false;
             } }
-        public uint Level = 0;
+        public int Level = 0;
         protected SkillType _type;
         //
         protected Transform _skillParent;

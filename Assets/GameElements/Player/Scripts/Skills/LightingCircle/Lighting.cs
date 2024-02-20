@@ -22,7 +22,7 @@ namespace Platformer.Units.PlayerSpace.Skill
         public void Init()
         {
             Damage = 1;
-            Level = 1;
+            Level = 0;
             _type = SkillType.Lighting;
             _lightingView.CollisionWithMonster += OnCollisionWithMonster;
         }

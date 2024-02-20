@@ -15,6 +15,7 @@ namespace Platformer.Units.PlayerSpace
         public StatsUpgradeVM(Stats stats)
         {
             _stats = stats;
+            Init();
             MaxHealthView.Value = _stats.MaxHealth.Value;
             _stats.MaxHealth.OnChanged += OnChangeMaxHealth;
             _stats.Damage.OnChanged += OnChangeDamage;
@@ -23,7 +24,10 @@ namespace Platformer.Units.PlayerSpace
         }
         private void Init()
         {
-
+            MaxHealthView.Value = _stats.MaxHealth.Value;
+            DamagevView.Value = _stats.Damage.Value;
+            BlockDamageView.Value = _stats.BlockDamage.Value;
+            SpeedView.Value = _stats.Speed.Value;
         }
         public void AcceptUpgrade()
         {

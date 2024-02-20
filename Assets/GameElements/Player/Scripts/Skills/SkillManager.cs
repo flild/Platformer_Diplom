@@ -46,11 +46,11 @@ namespace Platformer
         {
             return _skillsMap[type].IsUpgrade;
         }
-        public uint GetSkillLevel(SkillType type)
+        public int GetSkillLevel(SkillType type)
         {
             return _skillsMap[type].Level;
         }
-        public void ChangeSkillLevel(SkillType type, uint value)
+        public void ChangeSkillLevel(SkillType type, int value)
         {
             _skillsMap[type].Level = value;
             ChangeSkillsLevel?.Invoke(type);

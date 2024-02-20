@@ -23,20 +23,35 @@ namespace Platformer.Shop
         public ReactiveProperty<float> CometBuyCostView = new();
         public ReactiveProperty<float> BubbleBuyCostView = new();
 
-        public ReactiveProperty<uint> LightingLevelView = new();
-        public ReactiveProperty<uint> HealingLevelView = new();
-        public ReactiveProperty<uint> CometLevelView = new();
-        public ReactiveProperty<uint> BubbleLevelView = new();
+        public ReactiveProperty<int> LightingLevelView = new();
+        public ReactiveProperty<int> HealingLevelView = new();
+        public ReactiveProperty<int> CometLevelView = new();
+        public ReactiveProperty<int> BubbleLevelView = new();
 
         public ShopVM(ShopModel shop, StatsUpgradeVM statsUpVM)
         {
             this._statsUpVM = statsUpVM;
             this._shop = shop;
+            SubscribeInit();
             Init();
         }
         public void Init()
         {
             CoinView.Value = _shop.Coin.Value;
+            LightingLevelView.Value = _shop.LightingLevel.Value;
+            HealingLevelView.Value = _shop.HealingLevel.Value;
+            CometLevelView.Value = _shop.CometLevel.Value;
+            BubbleLevelView.Value = _shop.BubbleLevel.Value;
+
+            RecalculateHealthCost(_statsUpVM.MaxHealthView.Value);
+            RecalculateDamageCost(_statsUpVM.DamagevView.Value);
+            RecalculateDamageBlockCost(_statsUpVM.BlockDamageView.Value);
+            RecalculateSpeedCost(_statsUpVM.SpeedView.Value);
+
+        }
+        public void SubscribeInit()
+        {
+
             _shop.Coin.OnChanged += OnCoinChange;
             _statsUpVM.MaxHealthView.OnChanged += RecalculateHealthCost;
             _statsUpVM.DamagevView.OnChanged += RecalculateDamageCost;
@@ -52,7 +67,6 @@ namespace Platformer.Shop
             _shop.HealingLevel.OnChanged += OnChangeHealingLevel;
             _shop.CometLevel.OnChanged += OnChangeCometLevel;
             _shop.BubbleLevel.OnChanged += OnChangeBubbleLevel;
-
         }
         #region Cost change recalculation
         private void RecalculateHealthCost(float MaxHealthValue)
@@ -73,25 +87,25 @@ namespace Platformer.Shop
         }
 
         //skills
-        private void RecalculateLightingCost(uint lightingLevel)
+        private void RecalculateLightingCost(int lightingLevel)
         {
             if (lightingLevel < 1)
                 lightingLevel = 1;
             LightingBuyCostView.Value = lightingLevel * _shop.LightingLevelCostStep;
         }
-        private void RecalculateHealingCost(uint HealingLevel)
+        private void RecalculateHealingCost(int HealingLevel)
         {
             if (HealingLevel < 1)
                 HealingLevel = 1;
             HealingBuyCostView.Value = HealingLevel * _shop.HealingLevelCostStep;
         }
-        private void RecalculateCometCost(uint CometLevel)
+        private void RecalculateCometCost(int CometLevel)
         {
             if (CometLevel < 1)
                 CometLevel = 1;
             CometBuyCostView.Value = CometLevel * _shop.CometLevelCostStep;
         }
-        private void RecalculateBubbleCost(uint BubbleLevel)
+        private void RecalculateBubbleCost(int BubbleLevel)
         {
             if (BubbleLevel < 1)
                 BubbleLevel = 1;
@@ -145,24 +159,24 @@ namespace Platformer.Shop
         {
             CoinView.Value -= (int)BubbleBuyCostView.Value;
 
-            #endregion  BubbleLevelView.Value += 1;
+             BubbleLevelView.Value += 1;
         }
-
-        private void OnChangeLightingLevel(uint value)
+        #endregion 
+        private void OnChangeLightingLevel(int value)
         {
             LightingLevelView.Value = value;
         }
-        private void OnChangeHealingLevel(uint value)
+        private void OnChangeHealingLevel(int value)
         {
-            HealingBuyCostView.Value = value;
+            HealingLevelView.Value = value;
         }
-        private void OnChangeCometLevel(uint value)
+        private void OnChangeCometLevel(int value)
         {
             CometLevelView.Value = value;
         }
-        private void OnChangeBubbleLevel(uint value)
+        private void OnChangeBubbleLevel(int value)
         {
-            BubbleBuyCostView.Value = value;
+            BubbleLevelView.Value = value;
         }
         private void OnCoinChange(int value)
         {

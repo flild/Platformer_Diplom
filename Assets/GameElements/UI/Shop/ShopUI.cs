@@ -68,7 +68,17 @@ namespace Platformer.Shop
         }
         private void OnEnable()
         {
-            
+            _ShopVM.Init();
+            //_healthBuyCostLabel.text = _ShopVM.MaxHealthBuyCostView.Value.ToString();
+            //_damageBuyCostLabel.text = _ShopVM.DamageBuyCostView.Value.ToString();
+            //_blockDamageBuyCostLabel.text = _ShopVM.BlockDamageBuyCostView.Value.ToString();
+            //_speedBuyCostLabel.text = _ShopVM.SpeedBuyCostView.Value.ToString();
+
+            //_lightingCostLabel.text = _ShopVM.LightingBuyCostView.Value.ToString();
+            //_healingCostLabel.text = _ShopVM.HealingBuyCostView.Value.ToString();
+            //_cometCostLabel.text = _ShopVM.CometBuyCostView.Value.ToString();
+            //_bubbleCostLabel.text = _ShopVM.BubbleBuyCostView.Value.ToString();
+    
         }
         #region Buttons
         //stats btn
@@ -156,7 +166,7 @@ namespace Platformer.Shop
         {
             _bubbleCostLabel.text = value.ToString();
         }
-        private void OnChangeLightingLevel(uint value)
+        private void OnChangeLightingLevel(int value)
         {
             value -= 1;
             for(int i = 0; i < _maxSkillLevel; i++)
@@ -171,7 +181,7 @@ namespace Platformer.Shop
                 }
             }
         }
-        private void OnChangeHealingLevel(uint value)
+        private void OnChangeHealingLevel(int value)
         {
             value -= 1;
             for (int i = 0; i < _maxSkillLevel; i++)
@@ -186,7 +196,7 @@ namespace Platformer.Shop
                 }
             }
         }
-        private void OnChangeCometLevel(uint value)
+        private void OnChangeCometLevel(int value)
         {
             value -= 1;
             for (int i = 0; i < _maxSkillLevel; i++)
@@ -201,7 +211,7 @@ namespace Platformer.Shop
                 }
             }
         }
-        private void OnChangebubbleLevel(uint value)
+        private void OnChangebubbleLevel(int value)
         {
             value -= 1;
             for (int i = 0; i < _maxSkillLevel; i++)

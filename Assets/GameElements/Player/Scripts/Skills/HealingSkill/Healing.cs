@@ -23,7 +23,7 @@ namespace Platformer.Units.PlayerSpace.Skill
         public void Init()
         {
             Damage = 0;
-            Level = 1;
+            Level = 0;
             _type = SkillType.Heal;
             _healingValueTick = 0.5f;
             _healTickDelay = 0.5f;
