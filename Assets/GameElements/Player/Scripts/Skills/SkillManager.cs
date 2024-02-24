@@ -55,5 +55,21 @@ namespace Platformer
             _skillsMap[type].Level = value;
             ChangeSkillsLevel?.Invoke(type);
         }
+        public SkillsSaveData GetSaveData()
+        {
+            SkillsSaveData data = new();
+            data.LightingLevel = GetSkillLevel(SkillType.Lighting);
+            data.HealingLevel = GetSkillLevel(SkillType.Heal);
+            data.CometLevel = GetSkillLevel(SkillType.IceComet);
+            data.BubbleLevel = GetSkillLevel(SkillType.Bubble);
+            return data;
+        }
+        public void SetSaveData(SkillsSaveData data)
+        {
+            ChangeSkillLevel(SkillType.Lighting, data.LightingLevel);
+            ChangeSkillLevel(SkillType.Heal, data.HealingLevel);
+            ChangeSkillLevel(SkillType.IceComet, data.CometLevel);
+            ChangeSkillLevel(SkillType.Bubble, data.BubbleLevel);
+        }
     }
 }

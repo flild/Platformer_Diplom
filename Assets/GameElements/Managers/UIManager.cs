@@ -17,8 +17,12 @@ namespace Platformer
         private Player _player;
         [Inject]
         private CoinManager _coinManager;
+        [Inject]
+        private GameManager _gameManager;
         [SerializeField]
         private ShopUI _shopUI;
+        [SerializeField]
+        private PauseMenuUI _pauseUI;
         [SerializeField]
         private StatsUpgradeUI _statsUI;
         [SerializeField]
@@ -35,27 +39,49 @@ namespace Platformer
             _shopUI.Init(_shopVM);
             _statsUI.Init(_statsVM);
 
+            _pauseUI.Init(new PauseMenu(_gameManager));
+
         }
         private void OnEnable()
         {
             _controller = new PlayerController();
             _controller.Enable();
             _controller.UI.Shop.performed += OpenShop;
-            _controller.UI.CloseCurrentWindow.performed += CloseCurrentOpenWindow;
+            _controller.UI.CloseCurrentWindow.performed += OpenPauseMenu;
         }
         private void OnDisable()
         {
             _controller.Disable();
             _controller.UI.Shop.performed -= OpenShop;
-            _controller.UI.CloseCurrentWindow.performed -= CloseCurrentOpenWindow;
+            _controller.UI.CloseCurrentWindow.performed -= OpenPauseMenu;
         }
 
         private void OpenShop(InputAction.CallbackContext context)
         {
-            _shopUI.gameObject.SetActive(true);
-            ActiveWindow = _shopUI;
+            if(_shopUI.gameObject.active)
+            {
+                _shopUI.gameObject.SetActive(false);
+                ActiveWindow = null;
+            }
+            else
+            {
+                _shopUI.gameObject.SetActive(true);
+                ActiveWindow = _shopUI;
+            }
         }
-        private void CloseCurrentOpenWindow(InputAction.CallbackContext context)
+        private void OpenPauseMenu(InputAction.CallbackContext context)
+        {
+            if (ActiveWindow == null)
+            { 
+                _pauseUI.gameObject.SetActive(true);
+                ActiveWindow = _pauseUI;
+            }
+            else
+            {
+                CloseCurrentOpenWindow();
+            }
+        }
+        private void CloseCurrentOpenWindow()
         {
             if(ActiveWindow != null)
                 ActiveWindow.gameObject.SetActive(false);

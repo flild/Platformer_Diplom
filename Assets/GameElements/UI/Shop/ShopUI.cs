@@ -69,15 +69,6 @@ namespace Platformer.Shop
         private void OnEnable()
         {
             _ShopVM.Init();
-            //_healthBuyCostLabel.text = _ShopVM.MaxHealthBuyCostView.Value.ToString();
-            //_damageBuyCostLabel.text = _ShopVM.DamageBuyCostView.Value.ToString();
-            //_blockDamageBuyCostLabel.text = _ShopVM.BlockDamageBuyCostView.Value.ToString();
-            //_speedBuyCostLabel.text = _ShopVM.SpeedBuyCostView.Value.ToString();
-
-            //_lightingCostLabel.text = _ShopVM.LightingBuyCostView.Value.ToString();
-            //_healingCostLabel.text = _ShopVM.HealingBuyCostView.Value.ToString();
-            //_cometCostLabel.text = _ShopVM.CometBuyCostView.Value.ToString();
-            //_bubbleCostLabel.text = _ShopVM.BubbleBuyCostView.Value.ToString();
     
         }
         #region Buttons

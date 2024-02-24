@@ -37,17 +37,7 @@ namespace Platformer.Shop
         }
         public void Init()
         {
-            CoinView.Value = _shop.Coin.Value;
-            LightingLevelView.Value = _shop.LightingLevel.Value;
-            HealingLevelView.Value = _shop.HealingLevel.Value;
-            CometLevelView.Value = _shop.CometLevel.Value;
-            BubbleLevelView.Value = _shop.BubbleLevel.Value;
-
-            RecalculateHealthCost(_statsUpVM.MaxHealthView.Value);
-            RecalculateDamageCost(_statsUpVM.DamagevView.Value);
-            RecalculateDamageBlockCost(_statsUpVM.BlockDamageView.Value);
-            RecalculateSpeedCost(_statsUpVM.SpeedView.Value);
-
+            _shop.Init();
         }
         public void SubscribeInit()
         {

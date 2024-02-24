@@ -42,6 +42,50 @@ namespace Platformer.Extensions
             instance.StopCoroutine(routine);
         }
     }
+    [Serializable]
+    public class PlayerSaveData
+    {
+        public PlayerSaveData()
+        {
+            //скриптбл обжект
+
+            PositionX = 0;
+            PositionY = 0;
+            FlipX = true;
+            Coin = 400;
+            Health = 3;
+            Maxhealth = 3;
+            Damage = 2;
+            BlockDamage = 0.5f;
+            Speed = 3f;
+        }
+        public float PositionX;
+        public float PositionY;
+        public bool FlipX;
+        public int Coin;
+
+        public float Health;
+        public float Maxhealth;
+        public float Damage;
+        public float BlockDamage;
+        public float Speed;
+    }
+    [Serializable]
+    public class SkillsSaveData
+    {
+        public SkillsSaveData()
+        {
+            LightingLevel = 0;
+            HealingLevel = 0;
+            CometLevel = 0;
+            BubbleLevel = 0;
+        }
+        public int LightingLevel;
+        public int HealingLevel;
+        public int CometLevel;
+        public int BubbleLevel;
+    }
+
     public class ReactiveProperty<T>
     {
         public event Action<T> OnChanged;
@@ -57,8 +101,6 @@ namespace Platformer.Extensions
             }
         }
     }
-
-
 
     public class MaxHealthReactiveProperty<T> 
     {
