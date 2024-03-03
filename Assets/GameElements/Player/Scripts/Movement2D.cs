@@ -51,7 +51,7 @@ namespace Platformer.Units
         }
         public void OnMove(Vector2 direction)
         {
-            _rb.velocity = new Vector2(direction.x * _player.Stats.Speed.Value * Time.deltaTime * Constans.PlayerMoveScale, _rb.velocity.y);
+            _rb.velocity = new Vector2(direction.x * _player.Stats.Speed.Value * Time.deltaTime * Constans.MoveScale, _rb.velocity.y);
              var temp = _rb.velocity;
             temp.x = Math.Clamp(_rb.velocity.x, -_player.Stats.MaxSpeed, _player.Stats.MaxSpeed);
             _rb.velocity = temp;

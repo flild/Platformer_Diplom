@@ -1,7 +1,9 @@
 using Platformer.Extensions;
 using Platformer.Units.PlayerSpace;
+using IJunior.TypedScenes;
 using UnityEngine;
 using Zenject;
+using System.Collections.Generic;
 
 namespace Platformer
 {
@@ -15,10 +17,10 @@ namespace Platformer
         private GameManager _gameManger;
         [SerializeField]
         private SkillManager _skillManager;
-
-        private string PlayerSavePath = "/Player.dat";
-        private string SkillLevelSavePath = "/Skills.dat";
-
+        [SerializeField]
+        private List<GameObject> DontDestroyOnLoadList;
+        [HideInInspector]
+        public bool IsNeedToLoad  = false;
 
         public override void InstallBindings()
         {
@@ -32,19 +34,48 @@ namespace Platformer
         {
             _player ??= FindObjectOfType<Player>();
             if (_coinManager == null)
-                Debug.LogError("_coinManager on GameMager is empty");
+                Debug.LogError("_coinManager on GameManager is empty");
             _gameManger ??= GetComponent<GameManager>();
         }
-
+        private void Start()
+        {
+            foreach(var go in DontDestroyOnLoadList)
+            {
+                DontDestroyOnLoad(go);
+            }
+            if(IsNeedToLoad)
+            {
+                LoadGame();
+            }
+            
+        }
         public void SaveGame()
         {
-            SaveManager.SaveData(_player.GetSaveData(), PlayerSavePath);
-            SaveManager.SaveData(_skillManager.GetSaveData(), SkillLevelSavePath);
+            SaveManager.SaveData(_player.GetSaveData(), Constans.PlayerSavePath);
+            SaveManager.SaveData(_skillManager.GetSaveData(), Constans.SkillLevelSavePath);
         }
         public void LoadGame()
         {
-            _player.SetSaveData(SaveManager.LoadData<PlayerSaveData>(PlayerSavePath));
-            _skillManager.SetSaveData(SaveManager.LoadData<SkillsSaveData>(SkillLevelSavePath));
+            var playerData = SaveManager.LoadData<PlayerSaveData>(Constans.PlayerSavePath);
+            _player.SetSaveData(playerData);
+            _skillManager.SetSaveData(SaveManager.LoadData<SkillsSaveData>(Constans.SkillLevelSavePath));
+            var enumList = (LevelName[])System.Enum.GetValues(typeof(LevelName));
+            LoadLevel(enumList[playerData.MapLevel]);
+
+        }
+        public void LoadLevel(LevelName level)
+        {
+            _player.transform.position = new Vector3(0f, 0f, 10);
+            switch (level)
+            {
+                case LevelName.First:
+                    
+                    break;
+                case LevelName.Second:
+                    Level_2.Load();
+                    break;
+
+            }
 
         }
     }

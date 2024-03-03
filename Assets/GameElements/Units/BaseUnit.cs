@@ -55,6 +55,11 @@ namespace Platformer.Units
             if (_sprite == null)
                 _sprite = GetComponent<SpriteRenderer>();
         }
+        private void Start()
+        {
+            if (_player == null)
+                _player = FindObjectOfType<Player>();
+        }
         protected virtual void OnDrawGizmos()
         {
             Gizmos.color = Color.green;

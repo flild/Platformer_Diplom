@@ -4,15 +4,21 @@ namespace Platformer.UI.StartMenu
 {
     public class StartMenuUI : MonoBehaviour
     {
-        PauseMenu _pauseMenu;
+        [SerializeField]
+        private StartMenuVM _pauseMenu;
 
-        public void Init(PauseMenu vm)
+        private void OnValidate()
+        {
+            _pauseMenu ??= GetComponent<StartMenuVM>();
+        }
+
+        public void Init(StartMenuVM vm)
         {
             _pauseMenu = vm;
         }    
-        public void ResumeGameBtn_U()
+        public void StartNewGameBtn_U()
         {
-            _pauseMenu.ResumeGameBtn();
+            _pauseMenu.StartNewGameBtn();
         }
         public void LoadGameBtn_U()
         {

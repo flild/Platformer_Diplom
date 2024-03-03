@@ -7,8 +7,10 @@ namespace Platformer.Extensions
 {
     public static class Constans
     {
-        public const float PlayerMoveScale = 100f;
+        public const float MoveScale = 100f;
         public const float PlayerJumpScale = 1000f;
+        public const string PlayerSavePath = "/Player.dat";
+        public const string SkillLevelSavePath = "/Skills.dat";
     }
     public enum SkillType
     {
@@ -16,6 +18,11 @@ namespace Platformer.Extensions
         Heal = 2,
         IceComet = 3,
         Bubble = 4
+    }
+    public enum LevelName
+    {
+        First = 1,
+        Second = 2
     }
     public sealed class CoroutineManager : MonoBehaviour
     {
@@ -48,7 +55,7 @@ namespace Platformer.Extensions
         public PlayerSaveData()
         {
             //скриптбл обжект
-
+            
             PositionX = 0;
             PositionY = 0;
             FlipX = true;
@@ -58,6 +65,7 @@ namespace Platformer.Extensions
             Damage = 2;
             BlockDamage = 0.5f;
             Speed = 3f;
+            MapLevel = 0;
         }
         public float PositionX;
         public float PositionY;
@@ -69,6 +77,8 @@ namespace Platformer.Extensions
         public float Damage;
         public float BlockDamage;
         public float Speed;
+
+        public int MapLevel;
     }
     [Serializable]
     public class SkillsSaveData

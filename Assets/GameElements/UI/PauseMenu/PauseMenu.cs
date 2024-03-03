@@ -11,7 +11,7 @@ namespace Platformer.UI
         {
             _gameManager = gameManager;
         }
-        public void ResumeGameBtn()
+        public void StartNewGameBtn()
         {
 
         }

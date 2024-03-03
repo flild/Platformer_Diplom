@@ -12,7 +12,7 @@ namespace Platformer.UI
         }
         public void ResumeGameBtn_U()
         {
-            _pauseMenu.ResumeGameBtn();
+            _pauseMenu.StartNewGameBtn();
         }
         public void SaveGameBtn_U()
         {

@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+using IJunior.TypedScenes;
+
 
 namespace Platformer.UI.StartMenu
 {
-    public class StartMenuVM
+    public class StartMenuVM: MonoBehaviour
     {
 
         public void StartNewGameBtn()
         {
-            SceneManager.LoadScene(1);
+            Level_1.Load(false);
         }
         public void LoadGameBtn()
         {
-
+            Level_1.Load(true);
         }
         public void SettingsBtn()
         {
