@@ -57,8 +57,8 @@ namespace Platformer.Units
         }
         private void Start()
         {
-            if (_player == null)
-                _player = FindObjectOfType<Player>();
+            _player ??= FindObjectOfType<Player>();
+            _coinManager ??= FindObjectOfType<CoinManager>();
         }
         protected virtual void OnDrawGizmos()
         {

@@ -24,6 +24,12 @@ namespace Platformer.Extensions
         First = 1,
         Second = 2
     }
+    public enum SoundType
+    {
+        Jump,
+        SwordAttack,
+        TakeDamage
+    }
     public sealed class CoroutineManager : MonoBehaviour
     {
         private static CoroutineManager instance

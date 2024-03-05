@@ -16,6 +16,8 @@ namespace Platformer.Units
 
         [SerializeField, ReadOnly]
         private ViewComponent _view;
+        [SerializeField, ReadOnly]
+        private Sound _sound;
         [Inject]
         private Player _player;
 
@@ -29,6 +31,7 @@ namespace Platformer.Units
                 _rb = GetComponent<Rigidbody2D>();
             if (_view == null)
                 _view = GetComponent<ViewComponent>();
+            _sound ??= GetComponent<Sound>();
         }
 
         private void Update()
@@ -79,6 +82,7 @@ namespace Platformer.Units
                 _rb.velocity = temp;
                 _view.SecondJump();
             }
+            _sound.PlaySound(SoundType.Jump);
             _rb.AddForce(Vector2.up*_player.Stats.JumpForce* Constans.PlayerJumpScale, ForceMode2D.Force);
             _view._isGrounded = false;
 
@@ -87,6 +91,7 @@ namespace Platformer.Units
         public void OnAttack(CallbackContext context)
         {
             _view.Attack();
+            _sound.PlaySound(SoundType.SwordAttack);
             _player.OnAttack();
         }
         public void OnBlock(bool isBlock)
