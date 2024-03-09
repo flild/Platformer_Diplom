@@ -7,10 +7,9 @@ namespace Platformer.Units.PlayerSpace
         private Player _player;
 
 
-        private void OnValidate()
+        private void Awake()
         {
-            if (_player == null)
-                _player = GetComponent<Player>();
+            _player ??= GetComponent<Player>();
         }
         public void Heal(float value)
         {
@@ -31,7 +30,7 @@ namespace Platformer.Units.PlayerSpace
         {   
             if(_player.Stats.Health.Value <= 0)
             {
-                _player.OnPlayerDeath();
+                _player.PlayerDeath();
             }
                 _player.Stats.Health.Value = Mathf.Clamp(_player.Stats.Health.Value, 0, _player.Stats.MaxHealth.Value);
         }

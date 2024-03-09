@@ -6,14 +6,11 @@ namespace Platformer.Units.PlayerSpace
     {
         private Collider2D _collider;
         private Player _player;
-        private void OnValidate()
+
+        private void Awake()
         {
-            if(_collider == null)
-            {
-                _collider = GetComponent<Collider2D>();
-            }
-            if( _player == null)
-                _player = GetComponentInParent<Player>();
+            _collider ??= GetComponent<Collider2D>();
+            _player ??= GetComponentInParent<Player>();
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {

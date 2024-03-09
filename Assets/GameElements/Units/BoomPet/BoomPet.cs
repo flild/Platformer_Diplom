@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Platformer.Units
 {
-    public class BoomPet : BaseUnit
+    public class BoomPet : BaseUnit, IDamaged
     {
         private int _petNumber;
         private bool _isAttack;
@@ -22,9 +22,9 @@ namespace Platformer.Units
         private LayerMask _layerMaskToExplosion;
 
 
-        private void Start()
+        override protected void Start()
         {
-
+            base.Start();
             _petNumber = Random.Range(1, _MaxPetTypes+1);
             for (int i = 1; i < _MaxPetTypes+1; i++)
             {

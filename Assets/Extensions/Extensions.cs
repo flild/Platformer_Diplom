@@ -19,6 +19,7 @@ namespace Platformer.Extensions
         IceComet = 3,
         Bubble = 4
     }
+    [Serializable]
     public enum LevelName
     {
         First = 1,
@@ -70,7 +71,7 @@ namespace Platformer.Extensions
             Maxhealth = 3;
             Damage = 2;
             BlockDamage = 0.5f;
-            Speed = 3f;
+            Speed = 2f;
             MapLevel = 0;
         }
         public float PositionX;
@@ -84,7 +85,7 @@ namespace Platformer.Extensions
         public float BlockDamage;
         public float Speed;
 
-        public int MapLevel;
+        public LevelName MapLevel;
     }
     [Serializable]
     public class SkillsSaveData
@@ -150,8 +151,9 @@ namespace Platformer.Extensions
             {
                 if (value > _stats.MaxHealth.Value)
                     value = _stats.MaxHealth.Value;
-                else
-                    _value = value;
+                else if (value <= 0 )
+                    value = 0;
+                _value = value;
                 OnChanged?.Invoke(_value);
             }
         }

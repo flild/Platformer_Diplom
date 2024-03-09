@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Platformer.Units
 {
-    public class YellowSphere : BaseUnit
+    public class YellowSphere : BaseUnit, IDamaged
     {
         [SerializeField]
         private Shoot _shoot;
@@ -13,11 +13,13 @@ namespace Platformer.Units
         private float _attackDalay;
         private bool _isAttack = false;
 
-        private void Start()
+        override protected void Start()
         {
+            base.Start();
             _IsPatroling = false;
             _shoot.Damage = _Attackdamage;
         }
+        
         protected override void Attack()
         {
             if (_isAttack)

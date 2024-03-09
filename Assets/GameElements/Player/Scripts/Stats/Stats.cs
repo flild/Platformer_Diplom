@@ -35,7 +35,7 @@ namespace Platformer.Units.PlayerSpace
             Health.Value = 4;
             Damage.Value = 3;
             BlockDamage.Value = 0.5f;
-            Speed.Value = 3;
+            Speed.Value = 2;
             
         }
 

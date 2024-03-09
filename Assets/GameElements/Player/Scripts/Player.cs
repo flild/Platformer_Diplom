@@ -1,5 +1,6 @@
 
 using Platformer.Extensions;
+using Platformer.UI.Popup;
 using UnityEngine;
 using Zenject;
 
@@ -10,27 +11,37 @@ namespace Platformer.Units.PlayerSpace
     {
         private Stats _stats;
         private Health _health;
-        private ViewComponent _view;
         [SerializeField]
         private Collider2D _swordCollider;
         [SerializeField]
         private SpriteRenderer _sprite;
+        [SerializeField]
+        private PlayerInputComponent _input;
+        [SerializeField]
+        private ParticleSystem _blood;
+
         [Inject]
         private CoinManager _coinManager;
+        [Inject]
+        private GameManager _gameManager;
+        [Inject]
+        private PopupManager _popupManager;
         // вынести хелс в отдельный файл, сделать всю логику там, сюда ссылку дать
         public Stats Stats { get { return _stats; } }
-        private void OnValidate()
+
+        private void Awake()
         {
-            if(_stats == null)
-                _stats = GetComponent<Stats>();
-            if (_health == null)
-                _health = GetComponent<Health>();
-            if (_view == null)
-                _view = GetComponent<ViewComponent>();
+            _stats ??= GetComponent<Stats>();
+            _health ??= GetComponent<Health>();
         }
-        public void OnPlayerDeath()
+        public void PlayerDeath()
         {
-            _view.Death();
+            _input.PlayerDeath();
+            _popupManager.ActivatePopup(PopupStorage.Instance.DeathPopup);
+        }
+        public void PlayerAlive()
+        {
+            _input.PlayerAlive();
         }
         public bool GetFlipX()
         {
@@ -39,6 +50,7 @@ namespace Platformer.Units.PlayerSpace
         public void TakeDamage(float value)
         {
             _health.TakeDamage(value);
+            _blood.Play();
         }
         public void OnAttack()
         {
@@ -60,7 +72,7 @@ namespace Platformer.Units.PlayerSpace
             data.FlipX = _sprite.flipX;
             data.PositionX = transform.position.x;
             data.PositionY = transform.position.y;
-
+            data.MapLevel = _gameManager.Level;
             return data;
         }
         public void SetSaveData(PlayerSaveData data)
@@ -73,6 +85,7 @@ namespace Platformer.Units.PlayerSpace
             _sprite.flipX = data.FlipX;
             var tempPos = new Vector3(data.PositionX,data.PositionY, 10f);
             transform.position = tempPos;
+            _gameManager.Level = data.MapLevel;
         }
     }
 }

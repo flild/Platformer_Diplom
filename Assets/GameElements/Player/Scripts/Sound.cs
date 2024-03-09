@@ -10,7 +10,7 @@ namespace Platformer.Units.PlayerSpace
         public SerializedDictionary<SoundType, AudioClip> _soundsMap;
         private AudioSource _audioSource;
 
-        private void OnValidate()
+        private void Awake()
         {
             _audioSource ??= GetComponent<AudioSource>();
         }

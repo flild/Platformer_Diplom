@@ -7,7 +7,7 @@ namespace Platformer.UI.StartMenu
         [SerializeField]
         private StartMenuVM _pauseMenu;
 
-        private void OnValidate()
+        private void Awake()
         {
             _pauseMenu ??= GetComponent<StartMenuVM>();
         }

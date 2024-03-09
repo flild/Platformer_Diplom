@@ -71,6 +71,7 @@ namespace Platformer
         }
         private void OpenPauseMenu(InputAction.CallbackContext context)
         {
+            Time.timeScale = 0;
             if (ActiveWindow == null)
             { 
                 _pauseUI.gameObject.SetActive(true);
@@ -83,8 +84,11 @@ namespace Platformer
         }
         private void CloseCurrentOpenWindow()
         {
-            if(ActiveWindow != null)
+            if (ActiveWindow != null)
+            {
                 ActiveWindow.gameObject.SetActive(false);
+                Time.timeScale = 1;
+            }   
             ActiveWindow = null;
         }
     }

@@ -1,14 +1,14 @@
 using UnityEngine;
-using static Platformer.Extensions.EditorExtensions;
+
 
 namespace Platformer.Units
 {
     [RequireComponent(typeof(Animator))]
     public class ViewComponent : MonoBehaviour
     {
-        [SerializeField, ReadOnly]
+        [SerializeField]
         private Animator _animator;
-        [SerializeField, ReadOnly]
+        [SerializeField]
         private SpriteRenderer _sprite;
 
         [HideInInspector]
@@ -24,18 +24,13 @@ namespace Platformer.Units
         private int _IDGrouded;
         private int _IDSecondJump;
         private int _IDdeath;
+        private int _IDAlive;
 
-        private void OnValidate()
-        {
-           if( _animator == null )
-            {
-                _animator = GetComponent<Animator>();
-            }
-            if (_sprite == null)
-                _sprite = GetComponent<SpriteRenderer>();
-        }
+
         private void Awake()
         {
+            _animator ??= GetComponent<Animator>();
+            _sprite ??= GetComponent<SpriteRenderer>();
             _IDIsRun = Animator.StringToHash("Runnig");
             _IDIsBlock = Animator.StringToHash("IsBlocking");
             _IDAttack = Animator.StringToHash("Attack");
@@ -44,6 +39,8 @@ namespace Platformer.Units
             _IDJump = Animator.StringToHash("Jump");
             _IDSecondJump = Animator.StringToHash("SecondJump");
             _IDdeath = Animator.StringToHash("Death");
+            _IDAlive = Animator.StringToHash("Alive");
+
         }
         private void Update()
         {
@@ -90,6 +87,10 @@ namespace Platformer.Units
         public void Death()
         {
             _animator.SetTrigger(_IDdeath);
+        }
+        public void Alive()
+        {
+            _animator.SetTrigger(_IDAlive);
         }
     }
 }

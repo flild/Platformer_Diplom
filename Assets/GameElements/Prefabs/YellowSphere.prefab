@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 1796789248732366972}
   - component: {fileID: 8076137957332070510}
   - component: {fileID: 3786829970862757838}
+  - component: {fileID: 651943275926822236}
   m_Layer: 9
   m_Name: YellowSphere
   m_TagString: Untagged
@@ -401,17 +402,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5b5174cf124594ca8b21fc8d7e10ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 4
+  _health: 1
   _Attackdamage: 1
   _killBounty: 3
+  _player: {fileID: 0}
+  _coinManager: {fileID: 0}
   _moveSpeed: 0
   _patrolPoint1: {x: 0, y: 0}
   _patrolPoint2: {x: 0, y: 0}
   _PatrolDelay: 99
   _minDetectionDistance: 8
+  _IsPatroling: 1
   _shoot: {fileID: 4110295516967868348}
   _anim: {fileID: 1796789248732366972}
   _attackDalay: 2
+--- !u!61 &651943275926822236
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144377741730619830}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.010661066, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.4628571, y: 1.4628571}
+    newSize: {x: 10.24, y: 10.24}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8445153, y: 1.4628571}
+  m_EdgeRadius: 0
 --- !u!1 &6337465066713626806
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,9 +16,9 @@ namespace Platformer.Units
         protected float _Attackdamage;
         [SerializeField]
         protected int _killBounty;
-        [Inject]
+        [Inject, SerializeField]
         protected Player _player;
-        [Inject]
+        [Inject, SerializeField]
         private CoinManager _coinManager;
         protected Animator _animator;
         protected Rigidbody2D _rb;
@@ -35,6 +35,7 @@ namespace Platformer.Units
         private float _scanDelay = 1;
         [SerializeField]
         private float _minDetectionDistance;
+        [SerializeField]
         protected bool _IsPatroling = true;
 
         public event EventHandler<IMonster> OnUnitDeathEvent;
@@ -46,20 +47,18 @@ namespace Platformer.Units
             StartCoroutine(Scan());
         }
 
-        private void OnValidate()
+        private void Awake()
         {
-            if (_animator == null)
-                _animator = GetComponent<Animator>();
-            if (_rb == null)
-                _rb = GetComponent<Rigidbody2D>();
-            if (_sprite == null)
-                _sprite = GetComponent<SpriteRenderer>();
+            _animator ??= GetComponent<Animator>();
+            _rb ??= GetComponent<Rigidbody2D>();
+            _sprite ??= GetComponent<SpriteRenderer>();
         }
-        private void Start()
+        protected virtual void Start()
         {
             _player ??= FindObjectOfType<Player>();
             _coinManager ??= FindObjectOfType<CoinManager>();
         }
+
         protected virtual void OnDrawGizmos()
         {
             Gizmos.color = Color.green;

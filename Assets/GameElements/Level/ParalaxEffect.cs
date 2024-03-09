@@ -10,12 +10,11 @@ namespace Platformer.Level
         private Camera _cam;
         [SerializeField,Range(0,1)]
         private float _parallaxCoef;
-        private void OnValidate()
-        {
-            if(_cam == null)
-                _cam = Camera.main;
-        }
 
+        private void Awake()
+        {
+            _cam ??= Camera.main;
+        }
         private void Start()
         {
             _startpos = transform.position.x;

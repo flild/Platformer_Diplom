@@ -3,7 +3,6 @@ using Platformer.Extensions;
 using static UnityEngine.InputSystem.InputAction;
 using System;
 using Platformer.Units.PlayerSpace;
-using static Platformer.Extensions.EditorExtensions;
 using Zenject;
 
 namespace Platformer.Units
@@ -11,12 +10,12 @@ namespace Platformer.Units
     [RequireComponent(typeof(Rigidbody2D),typeof(PlayerInputComponent),typeof(ViewComponent))]
     public class Movement2D : MonoBehaviour
     {
-        [SerializeField, ReadOnly]
+        [SerializeField]
         private Rigidbody2D _rb;
 
-        [SerializeField, ReadOnly]
+        [SerializeField]
         private ViewComponent _view;
-        [SerializeField, ReadOnly]
+        [SerializeField]
         private Sound _sound;
         [Inject]
         private Player _player;
@@ -24,16 +23,13 @@ namespace Platformer.Units
         private bool _hasSecondJump;
         private bool _isGrounded;
 
-
-        private void OnValidate()
+        private void Awake()
         {
-            if(_rb == null )
-                _rb = GetComponent<Rigidbody2D>();
-            if (_view == null)
-                _view = GetComponent<ViewComponent>();
+
+            _rb ??= GetComponent<Rigidbody2D>();
+            _view ??= GetComponent<ViewComponent>();
             _sound ??= GetComponent<Sound>();
         }
-
         private void Update()
         {
             //todo timeScale
@@ -93,6 +89,15 @@ namespace Platformer.Units
             _view.Attack();
             _sound.PlaySound(SoundType.SwordAttack);
             _player.OnAttack();
+        }
+        public void OnDeath()
+        {
+            _view.Death();
+
+        }
+        public void OnAlive()
+        {
+            _view.Alive();
         }
         public void OnBlock(bool isBlock)
         {

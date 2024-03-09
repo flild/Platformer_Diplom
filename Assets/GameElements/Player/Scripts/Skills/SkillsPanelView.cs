@@ -1,7 +1,5 @@
-﻿
-using AYellowpaper.SerializedCollections;
+﻿using AYellowpaper.SerializedCollections;
 using Platformer.Extensions;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 

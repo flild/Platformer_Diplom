@@ -1,7 +1,6 @@
-using Platformer.Effects;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static Platformer.Extensions.EditorExtensions;
 
 namespace Platformer.Units.PlayerSpace
 {
@@ -9,18 +8,15 @@ namespace Platformer.Units.PlayerSpace
     public class PlayerInputComponent : MonoBehaviour
     {
         private PlayerController _controller;
-        [SerializeField, ReadOnly]
+        [SerializeField]
         private Movement2D _movement;
         //todo временное решение
         [SerializeField]
         private SkillManager _skillManager;
 
-        private void OnValidate()
+        private void Awake()
         {
-            if(_movement == null)
-            {
-                _movement = GetComponent<Movement2D>();
-            }
+            _movement ??= GetComponent<Movement2D>();
         }
         private void OnEnable()
         {
@@ -39,7 +35,7 @@ namespace Platformer.Units.PlayerSpace
 
 
         }
-        private void Update()
+        private void FixedUpdate()
         {
             _movement.OnMove(GetMoveDirection());
         }
@@ -58,6 +54,16 @@ namespace Platformer.Units.PlayerSpace
         public Vector2 GetMoveDirection()
         {
             return _controller.Player.Move.ReadValue<Vector2>();
+        }
+        public void PlayerDeath()
+        {
+            _controller.Disable();
+            _movement.OnDeath();
+        }
+        public void PlayerAlive()
+        {
+            _controller.Enable();
+            _movement.OnAlive();
         }
         private void OnStartBlock(InputAction.CallbackContext context)
         {
