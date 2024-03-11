@@ -177,12 +177,13 @@ namespace Platformer.Shop
         public void AcceptChanges()
         {
             _statsUpVM.AcceptUpgrade();
-            _shop.AcceptUpgrades();
+            
             _shop.LightingLevel.Value = LightingLevelView.Value;
             _shop.HealingLevel.Value = HealingLevelView.Value;
             _shop.CometLevel.Value = CometLevelView.Value;
             _shop.BubbleLevel.Value = BubbleLevelView.Value;
             _shop.Coin.Value = CoinView.Value;
+            _shop.AcceptUpgrades();
         }
         public void CancelChanges()
         {

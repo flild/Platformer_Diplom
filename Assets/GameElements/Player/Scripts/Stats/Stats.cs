@@ -31,8 +31,8 @@ namespace Platformer.Units.PlayerSpace
         public void Init()
         {
             Health = new(this);
-            MaxHealth.Value = 5;
-            Health.Value = 4;
+            MaxHealth.Value = 4;
+            Health.Value = 3;
             Damage.Value = 3;
             BlockDamage.Value = 0.5f;
             Speed.Value = 2;

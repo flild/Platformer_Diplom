@@ -50,8 +50,16 @@ namespace Platformer
         {
             return _skillsMap[type].Level;
         }
+        public bool IsSkillBlocked(SkillType type)
+        {
+            return _skillsMap[type].IsBlocked;
+        }
         public void ChangeSkillLevel(SkillType type, int value)
         {
+            if(_skillsMap[type].Level == value)
+                return;
+            if (value > 0)
+                _skillsMap[type].IsBlocked = false;
             _skillsMap[type].Level = value;
             ChangeSkillsLevel?.Invoke(type);
         }

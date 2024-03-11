@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Platformer.Units.PlayerSpace.Skill
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D), typeof(SpriteRenderer))]
-    public class IceCometView: MonoBehaviour
+    public class IceCometView: SkillViewBase
     {
         [SerializeField]
         private Player _player;
@@ -25,7 +25,6 @@ namespace Platformer.Units.PlayerSpace.Skill
             transform.parent = null;
             StartCoroutine(ShootingRoutine());
         }
-
         private IEnumerator ShootingRoutine()
         {
             var tempPos = _player.transform.position;

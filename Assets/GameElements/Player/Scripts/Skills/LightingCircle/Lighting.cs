@@ -8,14 +8,13 @@ namespace Platformer.Units.PlayerSpace.Skill
     {
         private float _damageEffectDuration;
         public float DamageEffectDuration { get { return _damageEffectDuration; } }
-        private LightingView _lightingView;
 
         private LightingAssistent _assistent;
         private ParticleSystem _damageEffectPrefab;
         public Lighting(LightingView view)
         {
-            _lightingView = view;
-            _damageEffectPrefab = _lightingView.DamageEffectPrefab;
+            _skillView = view;
+            _damageEffectPrefab = (_skillView as LightingView).DamageEffectPrefab;
             _assistent = new LightingAssistent(_damageEffectPrefab, DamageEffectDuration);
             Init();
         }
@@ -24,7 +23,8 @@ namespace Platformer.Units.PlayerSpace.Skill
             Damage = 1;
             Level = 0;
             _type = SkillType.Lighting;
-            _lightingView.CollisionWithMonster += OnCollisionWithMonster;
+            (_skillView as LightingView).CollisionWithMonster += OnCollisionWithMonster;
+            _cooldownDuration = 8;
         }
         public void OnCollisionWithMonster(IMonster monster)
         {
@@ -34,7 +34,7 @@ namespace Platformer.Units.PlayerSpace.Skill
         public override void MainAction()
         {
             base.MainAction();
-            _lightingView.gameObject.SetActive(true);
+            (_skillView as LightingView).gameObject.SetActive(true);
         }
 
 

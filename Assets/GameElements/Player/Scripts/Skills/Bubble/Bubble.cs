@@ -6,13 +6,12 @@ namespace Platformer.Units.PlayerSpace.Skill
 {
     public class Bubble: SkillBase
     {
-        private BubbleView _view;
         private Stats _stats;
         private float _baseDuration;
 
         public Bubble(BubbleView view, Stats stats)
         {
-            _view = view;
+            _skillView = view;
             _stats = stats;
             Init();
         }
@@ -22,6 +21,7 @@ namespace Platformer.Units.PlayerSpace.Skill
             Level = 0;
             _type = SkillType.Bubble;
             _baseDuration = 0.5f;
+            _cooldownDuration = 7;
         }
         public override void MainAction()
         {
@@ -30,10 +30,10 @@ namespace Platformer.Units.PlayerSpace.Skill
         }
         private IEnumerator ActivateBuble()
         {
-            _view.gameObject.SetActive(true);
+            _skillView.gameObject.SetActive(true);
             _stats.IsBabbled = true;
             yield return new WaitForSeconds(_baseDuration* Level);
-            _view.gameObject.SetActive(false);
+            _skillView.gameObject.SetActive(false);
             _stats.IsBabbled = false;
         }
     }

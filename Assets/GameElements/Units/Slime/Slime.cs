@@ -17,6 +17,9 @@ namespace Platformer.Units.Enemies
         [SerializeField]
         private ParticleSystem _blood;
 
+        private const int MonsterLayer = 9;
+        private const int MonsterWeaponLayer = 12;
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if(collision.gameObject.TryGetComponent<Player>(out Player _player))
@@ -45,6 +48,7 @@ namespace Platformer.Units.Enemies
             _targetPos = new Vector2(targetX, 0f).normalized;
             StartCoroutine(MoveToTarget());
             _animator.SetTrigger("Attack");
+            gameObject.layer = MonsterWeaponLayer;
         }
         public override void TakeDamage(float value)
         {
@@ -59,6 +63,7 @@ namespace Platformer.Units.Enemies
         }
         private IEnumerator Sleeping()
         {
+            gameObject.layer = MonsterLayer;
             _animator.SetBool("Sleeping", true);
             _IsSleep = true;
             _IsPatroling = false;

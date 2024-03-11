@@ -7,15 +7,15 @@ namespace Platformer.Units.PlayerSpace.Skill
 {
     public class Healing : SkillBase
     {
-        private HealingView _healingView;
 
         private float HealValue = 1f;
         private Player _player;
         private float _healingValueTick;
         private float _healTickDelay;
+
         public Healing(HealingView view, Player player)
         {
-            _healingView = view;
+            _skillView = view;
             _player = player;
             Init();
             _player = player;
@@ -27,6 +27,7 @@ namespace Platformer.Units.PlayerSpace.Skill
             _type = SkillType.Heal;
             _healingValueTick = 0.5f;
             _healTickDelay = 0.5f;
+            _cooldownDuration = 15;
         }
         public override void MainAction()
         {
@@ -35,7 +36,7 @@ namespace Platformer.Units.PlayerSpace.Skill
         }
         private IEnumerator HealingProcces()
         {
-            _healingView.gameObject.SetActive(true);
+            _skillView.gameObject.SetActive(true);
             float completedHeal = 0f;
             while(completedHeal< HealValue * Level)
             {
@@ -44,7 +45,7 @@ namespace Platformer.Units.PlayerSpace.Skill
                 yield return new WaitForSeconds(_healTickDelay);
             }
             yield return new WaitForSeconds(_healTickDelay);
-            _healingView.gameObject.SetActive(false);
+            _skillView.gameObject.SetActive(false);
         }
     }
 }

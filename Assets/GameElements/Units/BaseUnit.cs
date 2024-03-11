@@ -52,6 +52,7 @@ namespace Platformer.Units
             _animator ??= GetComponent<Animator>();
             _rb ??= GetComponent<Rigidbody2D>();
             _sprite ??= GetComponent<SpriteRenderer>();
+            
         }
         protected virtual void Start()
         {
@@ -143,9 +144,15 @@ namespace Platformer.Units
             {
                 yield return null;
                 if(_IsPatroling)
+                {
                     Move(targetPos);
+                    targetX = _currentPoint.x - transform.position.x;
+                    targetPos = new Vector2(targetX, 0f).normalized;
+                }
                 else
                     Move(Vector2.zero);
+
+                
             }
             SwitchCurrentPoint();
             yield return null;

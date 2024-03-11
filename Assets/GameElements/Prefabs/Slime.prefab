@@ -135,11 +135,14 @@ MonoBehaviour:
   _health: 4
   _Attackdamage: 0.5
   _killBounty: 3
+  _player: {fileID: 0}
+  _coinManager: {fileID: 0}
   _moveSpeed: 120
   _patrolPoint1: {x: 50.13, y: 0}
   _patrolPoint2: {x: 64.14, y: 0}
   _PatrolDelay: 1
   _minDetectionDistance: 3.62
+  _IsPatroling: 1
   _sleepTime: 3
   DamageImmunityEffectTime: 0.3
   _blood: {fileID: 6227997647778335750}

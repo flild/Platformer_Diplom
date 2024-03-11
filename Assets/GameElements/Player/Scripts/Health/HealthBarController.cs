@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
@@ -6,8 +7,8 @@ namespace Platformer.Units.PlayerSpace
 {
     public class HealthBarController : MonoBehaviour
     {
-        private GameObject[] heartContainers;
-        private Image[] heartFills;        
+        private List<GameObject> heartContainers;
+        private List<Image> heartFills;        
         [Inject]
         private Player _player;
         [SerializeField]
@@ -20,9 +21,14 @@ namespace Platformer.Units.PlayerSpace
 
         private void Start()
         {
-            heartContainers = new GameObject[(int)_player.Stats.MaxHealth.Value];
-            heartFills = new Image[(int)_player.Stats.MaxHealth.Value];
-
+            //по идеи вынести в stats максимально возможный размер хп, но пока так
+            heartContainers = new List<GameObject>(20);
+            heartFills = new List<Image>(20);
+            for(int i = 0; i < 20; i++)
+            {
+                heartContainers.Add(null);
+                heartFills.Add(null);
+            }
             InstantiateHeartContainers();
             _player.Stats.MaxHealth.OnChanged += UpdateHeartsHUD;
             _player.Stats.Health.OnChanged += UpdateHeartsHUD;
@@ -41,7 +47,7 @@ namespace Platformer.Units.PlayerSpace
 
         void SetHeartContainers()
         {
-            for (int i = 0; i < heartContainers.Length; i++)
+            for (int i = 0; i < heartContainers.Count; i++)
             {
                 if (i < _player.Stats.MaxHealth.Value)
                 {
@@ -56,7 +62,7 @@ namespace Platformer.Units.PlayerSpace
 
         void SetFilledHearts()
         {
-            for (int i = 0; i < heartFills.Length; i++)
+            for (int i = 0; i < heartFills.Count; i++)
             {
                 if (i < _player.Stats.Health.Value)
                 {
@@ -80,13 +86,14 @@ namespace Platformer.Units.PlayerSpace
             var offset = heartContainerPrefab.GetComponent<RectTransform>().sizeDelta.x;
             var startX = heartContainerPrefab.GetComponent<RectTransform>().sizeDelta.x/2;
             var startY = heartContainerPrefab.GetComponent<RectTransform>().sizeDelta.y / 2;
-            for (int i = 0; i < _player.Stats.MaxHealth.Value; i++)
+            for (int i = 0; i < 20; i++)
             {
                 GameObject temp = Instantiate(heartContainerPrefab,new Vector2(startX + offset*i+ _heartPadding*i, startY),Quaternion.identity, transform);
                 heartContainers[i] = temp;
                 heartFills[i] = temp.transform.Find("HeartFill").GetComponent<Image>();
             }
         }
+
     }
 }
 

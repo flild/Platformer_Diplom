@@ -76,19 +76,28 @@ namespace Platformer.Units.PlayerSpace
 
         private void FirstSkill(InputAction.CallbackContext context)
         {
-            _skillManager.UseSkill(Extensions.SkillType.Lighting);
+            UseSkill(Extensions.SkillType.Lighting);
         }
         private void SecondSkill(InputAction.CallbackContext context)
         {
-            _skillManager.UseSkill(Extensions.SkillType.Heal);
+            UseSkill(Extensions.SkillType.Heal);
         }
         private void ThirdSkill(InputAction.CallbackContext context)
         {
-            _skillManager.UseSkill(Extensions.SkillType.IceComet);
+            UseSkill(Extensions.SkillType.IceComet);
         }
         private void FourthSkill(InputAction.CallbackContext context)
         {
-            _skillManager.UseSkill(Extensions.SkillType.Bubble);
+            UseSkill(Extensions.SkillType.Bubble);
+        }
+
+        private void UseSkill(Extensions.SkillType type)
+        {
+            if (_skillManager.IsSkillBlocked(type))
+            {
+                return;
+            }
+            _skillManager.UseSkill(type);
         }
     }
 

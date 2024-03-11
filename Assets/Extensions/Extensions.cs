@@ -67,7 +67,7 @@ namespace Platformer.Extensions
             PositionY = 0;
             FlipX = true;
             Coin = 400;
-            Health = 3;
+            Health = 4;
             Maxhealth = 3;
             Damage = 2;
             BlockDamage = 0.5f;

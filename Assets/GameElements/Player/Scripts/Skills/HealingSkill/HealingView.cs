@@ -2,7 +2,7 @@
 
 namespace Platformer.Units.PlayerSpace.Skill
 {
-    public class HealingView: MonoBehaviour
+    public class HealingView: SkillViewBase
     {
     }
 }

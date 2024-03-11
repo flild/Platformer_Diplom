@@ -9,6 +9,7 @@ namespace Platformer.Units.PlayerSpace
     [RequireComponent(typeof(Stats),typeof(Health),typeof(ViewComponent))]
     public class Player : MonoBehaviour
     {
+        [SerializeField]
         private Stats _stats;
         private Health _health;
         [SerializeField]

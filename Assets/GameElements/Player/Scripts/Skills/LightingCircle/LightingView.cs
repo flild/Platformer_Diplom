@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Platformer.Units.PlayerSpace.Skill
 {
-    public class LightingView: MonoBehaviour
+    public class LightingView: SkillViewBase
     {
         // нужно откуда то, включать
         [SerializeField]
@@ -19,6 +19,7 @@ namespace Platformer.Units.PlayerSpace.Skill
         private List<Transform> _scaledTransforms;
         [SerializeField]
         private LightingCollider _collider;
+
         public ParticleSystem DamageEffectPrefab;
 
         public Action<IMonster> CollisionWithMonster;
@@ -32,6 +33,7 @@ namespace Platformer.Units.PlayerSpace.Skill
         {
             _collider.CollisionWithMonster += OnCollisionWithMonster;
         }
+
         private IEnumerator ScalingScaleSize()
         {
             float time = 0;

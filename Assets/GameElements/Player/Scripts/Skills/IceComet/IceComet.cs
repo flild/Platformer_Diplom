@@ -5,14 +5,12 @@ namespace Platformer.Units.PlayerSpace.Skill
 {
     public class IceComet: SkillBase
     {
-
-        private IceCometView _cometView;
         private float _flyDuration;
         private float _speed;
 
         public IceComet(IceCometView cometView)
         {
-            _cometView = cometView;
+            _skillView = cometView;
             Init();
         }
         public void Init()
@@ -22,13 +20,14 @@ namespace Platformer.Units.PlayerSpace.Skill
             _type = SkillType.IceComet;
             _flyDuration = 2;
             _speed = 6;
+            _cooldownDuration = 5;
         }
         public override void MainAction()
         {
             base.MainAction();
-            _cometView.gameObject.SetActive(true);
-            _cometView.HitMonster += OnHittedMonster;
-            _cometView.Shoot(_flyDuration, _speed);
+            _skillView.gameObject.SetActive(true);
+            (_skillView as IceCometView).HitMonster += OnHittedMonster;
+            (_skillView as IceCometView).Shoot(_flyDuration, _speed);
         }
         private void OnHittedMonster(IMonster monster)
         {
