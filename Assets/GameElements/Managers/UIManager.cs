@@ -39,7 +39,7 @@ namespace Platformer
             _shopUI.Init(_shopVM);
             _statsUI.Init(_statsVM);
 
-            _pauseUI.Init(new PauseMenu(_gameManager));
+            _pauseUI.Init(new PauseMenu(_gameManager, this));
 
         }
         private void OnEnable()
@@ -82,7 +82,7 @@ namespace Platformer
                 CloseCurrentOpenWindow();
             }
         }
-        private void CloseCurrentOpenWindow()
+        public void CloseCurrentOpenWindow()
         {
             if (ActiveWindow != null)
             {

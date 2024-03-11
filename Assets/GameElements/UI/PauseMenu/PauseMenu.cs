@@ -6,14 +6,16 @@ namespace Platformer.UI
     public class PauseMenu
     {
         private GameManager _gameManager;
+        private UIManager _UImanager;
 
-        public PauseMenu(GameManager gameManager)
+        public PauseMenu(GameManager gameManager, UIManager uiManager)
         {
             _gameManager = gameManager;
+            _UImanager = uiManager;
         }
-        public void StartNewGameBtn()
+        public void ResumeGameBtn()
         {
-
+            _UImanager.CloseCurrentOpenWindow();
         }
 
         public void SaveGameBtn()
