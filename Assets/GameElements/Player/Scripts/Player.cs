@@ -82,6 +82,7 @@ namespace Platformer.Units.PlayerSpace
             _stats.MaxHealth.Value = data.Maxhealth;
             _stats.Health.Value = data.Health;
             _stats.BlockDamage.Value = data.BlockDamage;
+            _stats.Damage.Value = data.Damage;
             _stats.Speed.Value = data.Speed;
             _sprite.flipX = data.FlipX;
             var tempPos = new Vector3(data.PositionX,data.PositionY, 10f);

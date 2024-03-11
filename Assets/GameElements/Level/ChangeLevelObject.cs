@@ -23,7 +23,7 @@ namespace Platformer.Level
         {
             if(collision.TryGetComponent<Player>(out Player player))
             {
-                _gameManager.LoadLevel(LevelNameToChange);
+                _gameManager.LoadLevel(LevelNameToChange, true);
             }
         }
 

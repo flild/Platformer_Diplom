@@ -58,8 +58,7 @@ namespace Platformer
         {
             if(_skillsMap[type].Level == value)
                 return;
-            if (value > 0)
-                _skillsMap[type].IsBlocked = false;
+            _skillsMap[type].IsBlocked = value > 0 ? false : true;
             _skillsMap[type].Level = value;
             ChangeSkillsLevel?.Invoke(type);
         }

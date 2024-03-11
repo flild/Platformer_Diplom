@@ -72,7 +72,7 @@ namespace Platformer.Extensions
             Damage = 2;
             BlockDamage = 0.5f;
             Speed = 2f;
-            MapLevel = 0;
+            MapLevel = LevelName.First;
         }
         public float PositionX;
         public float PositionY;

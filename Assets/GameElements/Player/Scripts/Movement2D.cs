@@ -17,6 +17,8 @@ namespace Platformer.Units
         private ViewComponent _view;
         [SerializeField]
         private Sound _sound;
+        [SerializeField]
+        private AirBoofer _airBoofer;
         [Inject]
         private Player _player;
 
@@ -29,21 +31,31 @@ namespace Platformer.Units
             _rb ??= GetComponent<Rigidbody2D>();
             _view ??= GetComponent<ViewComponent>();
             _sound ??= GetComponent<Sound>();
+            _airBoofer ??= GetComponentInChildren<AirBoofer>();
+        }
+        private void Start()
+        {
+            _airBoofer.TouchGround += OnGroundCollision;
+            _airBoofer.LeaveGround += OnGroundOut;
         }
         private void Update()
         {
             //todo timeScale
             _view._YSpeed = _rb.velocity.y;
         }
-
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnDisable()
         {
-            
+            _airBoofer.TouchGround -= OnGroundCollision;
+            _airBoofer.LeaveGround -= OnGroundOut;
+        }
+
+        public void OnGroundCollision()
+        {
             _view._isGrounded = true;
             _hasSecondJump = true;
             _isGrounded = true;
         }
-        private void OnCollisionExit2D(Collision2D collision)
+        public void OnGroundOut()
         {
             _view._isGrounded = false;
             _isGrounded = false;

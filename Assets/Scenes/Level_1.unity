@@ -15916,7 +15916,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.053060055, z: 0}
+  m_LocalPosition: {x: 0.23, y: -0.118939996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -36012,6 +36012,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 90, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 10
+      m_TileSpriteIndex: 10
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 97, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -39054,7 +39064,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: b6f37964f2863bb47ae5c26f46db48cf, type: 2}
   - m_RefCount: 105
     m_Data: {fileID: 11400000, guid: 8212ce8be5c5c3b46898e902287c288f, type: 2}
-  - m_RefCount: 3
+  - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: b5786621548ac4249afcc66e075d6958, type: 2}
   - m_RefCount: 563
     m_Data: {fileID: 11400000, guid: 263f6ecf024cc0f45987d45799ca3020, type: 2}
@@ -39143,7 +39153,7 @@ Tilemap:
     m_Data: {fileID: 1987984787, guid: 29e21165cb3ae334d969d4be634eaa9e, type: 3}
   - m_RefCount: 105
     m_Data: {fileID: -200938369, guid: 29e21165cb3ae334d969d4be634eaa9e, type: 3}
-  - m_RefCount: 3
+  - m_RefCount: 4
     m_Data: {fileID: -819784374, guid: 29e21165cb3ae334d969d4be634eaa9e, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -39212,7 +39222,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 1627106897, guid: 29e21165cb3ae334d969d4be634eaa9e, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 2226
+  - m_RefCount: 2227
     m_Data:
       e00: 1
       e01: 0
@@ -39249,7 +39259,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 2227
+  - m_RefCount: 2228
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 0
     m_Data: {r: 3.5198e-41, g: 3.5198e-41, b: 3.5198e-41, a: 3.5198e-41}
@@ -39521,13 +39531,9 @@ CompositeCollider2D:
       - X: 455000000
         Y: -10000000
       - X: 455000000
-        Y: -5000000
-      - X: 450000000
-        Y: -5000000
-      - X: 450000000
-        Y: -156250
+        Y: 0
       - X: 450937504
-        Y: -156250
+        Y: 0
       - X: 450937504
         Y: 20156250
       - X: 442500000
@@ -39827,10 +39833,8 @@ CompositeCollider2D:
       - {x: 46, y: -1.9999707}
       - {x: 45.999973, y: -1}
       - {x: 45.5, y: -0.9999706}
-      - {x: 45.499973, y: -0.5}
-      - {x: 45, y: -0.49997061}
-      - {x: 45.00003, y: -0.015625}
-      - {x: 45.09375, y: -0.015595701}
+      - {x: 45.499973, y: 0}
+      - {x: 45.09375, y: 0.0000294}
       - {x: 45.093723, y: 2.015625}
       - {x: 44.25, y: 2.0155957}
       - {x: 44.249973, y: 1.515625}
@@ -39902,16 +39906,16 @@ CompositeCollider2D:
       - {x: 27.999971, y: 3}
       - {x: 27, y: 2.999971}
       - {x: 27.000029, y: 2.5}
-    - - {x: 14.999971, y: 2}
-      - {x: 14.999971, y: 2.5}
-      - {x: 13, y: 2.499971}
-      - {x: 13.00003, y: 2}
     - - {x: 70.49997, y: 2}
       - {x: 70.49997, y: 2.5}
       - {x: 67.328125, y: 2.4999924}
       - {x: 67.3125, y: 2.4843643}
       - {x: 67.31251, y: 2.0937436}
       - {x: 67.375015, y: 2}
+    - - {x: 14.999971, y: 2}
+      - {x: 14.999971, y: 2.5}
+      - {x: 13, y: 2.499971}
+      - {x: 13.00003, y: 2}
     - - {x: -2.3750145, y: 0.5}
       - {x: -2.3125, y: 0.5937578}
       - {x: -2.3125076, y: 0.9843826}
@@ -55309,6 +55313,7 @@ MonoBehaviour:
       Value: {fileID: 228030200}
     - Key: 4
       Value: {fileID: 2018903049}
+  InactiveSkillColor: {r: 0.22745098, g: 0.22745098, b: 0.22745098, a: 1}
 --- !u!1 &1256460642
 GameObject:
   m_ObjectHideFlags: 0
@@ -55761,6 +55766,96 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &1289778837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1289778838}
+  - component: {fileID: 1289778839}
+  - component: {fileID: 1289778840}
+  m_Layer: 6
+  m_Name: CheckGroundCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1289778838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289778837}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1380429259}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1289778839
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289778837}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06146562, y: 0.40891892}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.746209, y: 0.6328589}
+  m_EdgeRadius: 0
+--- !u!114 &1289778840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289778837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0782e6645d0146448b43df8e61f499d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1328480832
 GameObject:
   m_ObjectHideFlags: 0
@@ -56438,7 +56533,7 @@ Transform:
   m_GameObject: {fileID: 1380429258}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.918, z: 10}
+  m_LocalPosition: {x: 0.23, y: -1.09, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -56447,6 +56542,7 @@ Transform:
   - {fileID: 682201889}
   - {fileID: 854920175}
   - {fileID: 1758887319}
+  - {fileID: 1289778838}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1380429262
@@ -56581,7 +56677,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.061878204, y: 0.7074051}
+  m_Offset: {x: -0.061878204, y: 0.7291919}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -56592,7 +56688,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8209915, y: 1.2247391}
+  m_Size: {x: 0.8209915, y: 1.1811655}
   m_EdgeRadius: 0
 --- !u!114 &1380429272
 MonoBehaviour:
@@ -56654,6 +56750,7 @@ MonoBehaviour:
   _rb: {fileID: 1380429262}
   _view: {fileID: 1380429273}
   _sound: {fileID: 1380429279}
+  _airBoofer: {fileID: 1289778840}
 --- !u!114 &1380429276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76093,7 +76190,7 @@ Transform:
   m_GameObject: {fileID: 1941092451}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.053060055, z: 0}
+  m_LocalPosition: {x: 0.23, y: -0.118939996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

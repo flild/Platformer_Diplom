@@ -11,6 +11,8 @@ namespace Platformer.Units.PlayerSpace.Skill
         private SkillManager _skillManager;
         [SerializedDictionary("SkillType", "Image")]
         public SerializedDictionary<SkillType, Image> _skillsMap;
+        [SerializeField]
+        private Color InactiveSkillColor;
 
         private void Awake()
         {
@@ -27,6 +29,12 @@ namespace Platformer.Units.PlayerSpace.Skill
             {
                 _skillsMap[type].color = new Color(255, 255, 255, 1);
             }
+            else
+            {
+                _skillsMap[type].color = InactiveSkillColor;
+            }
+
+
         }
     }
 }

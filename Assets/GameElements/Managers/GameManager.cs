@@ -77,7 +77,7 @@ namespace Platformer
             var playerData = new PlayerSaveData();
             _player.SetSaveData(playerData);
             _skillManager.SetSaveData(new SkillsSaveData());
-            LoadLevel(LevelName.First);
+            LoadLevel(LevelName.First, true);
             
         }    
         public void LoadGame()
@@ -88,9 +88,10 @@ namespace Platformer
             LoadLevel(playerData.MapLevel);
 
         }
-        public void LoadLevel(LevelName level)
+        public void LoadLevel(LevelName level, bool isNeedToSetPlayerPosition = false)
         {
-            _player.transform.position = new Vector3(0f, 0f, 10);
+            if(isNeedToSetPlayerPosition)
+                _player.transform.position = new Vector3(0f, 0f, 10);
             this.Level = level;
             switch (level)
             {
