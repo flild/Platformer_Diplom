@@ -64,7 +64,7 @@ namespace Platformer.Units
                 
                 Move(direction);
                 tempTime -= Time.deltaTime;
-                yield return null;
+                yield return new WaitForFixedUpdate();
             }
             _animator.SetTrigger("Attack");
             var temp = _rb.velocity;

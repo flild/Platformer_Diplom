@@ -93,7 +93,7 @@ namespace Platformer.Units.Enemies
             while (_isAttack)
             { 
                 Move(_targetPos, false);
-                yield return null;
+                yield return new WaitForFixedUpdate();
             }
             if(!_IsSleep)
                 _IsPatroling = true;

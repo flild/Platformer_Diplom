@@ -137,7 +137,7 @@ MonoBehaviour:
   _killBounty: 3
   _player: {fileID: 0}
   _coinManager: {fileID: 0}
-  _moveSpeed: 120
+  _moveSpeed: 90
   _patrolPoint1: {x: 50.13, y: 0}
   _patrolPoint2: {x: 64.14, y: 0}
   _PatrolDelay: 1

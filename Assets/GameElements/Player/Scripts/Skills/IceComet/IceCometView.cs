@@ -37,7 +37,7 @@ namespace Platformer.Units.PlayerSpace.Skill
             {
                 _rb.velocity = Vector2.right * directionX * _speed;
                 time += Time.deltaTime;
-                yield return null;
+                yield return new WaitForFixedUpdate();
             }
             Disable();
             yield return null;

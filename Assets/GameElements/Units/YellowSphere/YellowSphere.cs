@@ -11,12 +11,13 @@ namespace Platformer.Units
         private Animator _anim;
         [SerializeField]
         private float _attackDalay;
+        [SerializeField]
+        private GameObject _trail;
         private bool _isAttack = false;
 
         override protected void Start()
         {
             base.Start();
-            _IsPatroling = false;
             _shoot.Damage = _Attackdamage;
         }
         
@@ -36,6 +37,11 @@ namespace Platformer.Units
             playerPos.y += 1;
             _shoot.transform.right = playerPos - _shoot.transform.position;
             StartCoroutine(AttackDalay());
+        }
+        protected override void Move(Vector2 direction, bool animated = true)
+        {
+            _trail.transform.rotation = new Quaternion(0,direction.x >= 0 ? 0 : 180,0,0);
+            base.Move(direction, animated);
         }
         private IEnumerator AttackDalay()
         {

@@ -86,7 +86,7 @@ namespace Platformer.Units
         /// </summary>
         /// <param name="direction"></param>
         /// <param name="animated">по умолчанию true, поставить false, если движение происходит не своим ходом</param>
-        protected void Move(Vector2 direction, bool animated = true)
+        protected virtual void Move(Vector2 direction, bool animated = true)
         {
             if (direction.x == 0)
             {
@@ -130,9 +130,16 @@ namespace Platformer.Units
         }
         private IEnumerator PatrolWait()
         {
-            Move(Vector2.zero);
-            yield return new WaitForSeconds(_PatrolDelay);
-            Patroling();
+            if (_IsPatroling)
+            {
+                Move(Vector2.zero);
+                yield return new WaitForSeconds(_PatrolDelay);
+                Patroling();
+            }
+            else
+            {
+                yield return new WaitForSeconds(_PatrolDelay);
+            }
             yield return null;
         }
         private IEnumerator MoveToPoint(Vector2 point)
@@ -142,7 +149,7 @@ namespace Platformer.Units
             var targetPos = new Vector2(targetX, 0f).normalized;
             while (Vector2.Distance(transform.position, point) > 0.05)
             {
-                yield return null;
+                yield return new WaitForFixedUpdate();
                 if(_IsPatroling)
                 {
                     Move(targetPos);

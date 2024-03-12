@@ -74,6 +74,8 @@ namespace Platformer.Units
             //ground false && second true падение или второй прыжок OK
             //ground true && second false  not posible
             //ground true && second true  ---> первый прыжок
+            if (_view.InAnimation)
+                return;
             if( _isGrounded)
             {
                 _view.Jump();

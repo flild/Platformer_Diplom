@@ -15,6 +15,7 @@ namespace Platformer.Units
         public bool _isGrounded;
         [HideInInspector]
         public float _YSpeed;
+        public bool InAnimation = false;
         //Anim parametrs IDs
         private int _IDIsRun;
         private int _IDIsBlock;
@@ -65,6 +66,7 @@ namespace Platformer.Units
         }
         public void Attack()
         {
+            InAnimation = true;
             _animator.SetTrigger(_IDAttack);
 
         }
@@ -83,6 +85,7 @@ namespace Platformer.Units
         public void EndAnyAnimation()
         {
             //todo
+            InAnimation = false;
         }
         public void Death()
         {
