@@ -96,6 +96,7 @@ namespace Platformer
             switch (level)
             {
                 case LevelName.First:
+                    Level_1.Load(false);
                     break;
                 case LevelName.Second:
                     Level_2.Load();
