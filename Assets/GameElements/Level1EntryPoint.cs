@@ -1,9 +1,8 @@
-using Platformer.Extensions;
-using Platformer.Units.PlayerSpace;
+
 using UnityEngine;
-using Zenject;
+
 using IJunior.TypedScenes;
-using System.Collections;
+
 
 namespace Platformer
 {

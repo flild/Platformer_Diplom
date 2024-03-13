@@ -55,9 +55,13 @@ namespace Platformer
             }
             if(IsNeedToLoad)
             {
-                LoadGame();
+                LoadGame();    
             }
-            
+            else
+            {
+                StartNewGame();
+            }
+            IsNeedToLoad = false;
         }
         private void Update()
         {
@@ -96,7 +100,7 @@ namespace Platformer
             switch (level)
             {
                 case LevelName.First:
-                    Level_1.Load(false);
+                    Level_1_OnlyLevel.Load();
                     break;
                 case LevelName.Second:
                     Level_2.Load();

@@ -11,9 +11,11 @@ namespace Platformer.Level
     {
         [SerializeField]
         private LevelName LevelNameToChange;
-        [Inject]
         private GameManager _gameManager;
-
+        private void Start()
+        {
+            _gameManager ??= FindObjectOfType<GameManager>();
+        }
         private void OnValidate()
         {
             GetComponent<Collider2D>().isTrigger = true;

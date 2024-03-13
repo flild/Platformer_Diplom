@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathPopup: {fileID: 5132480196087315471, guid: 923d3f390d7cf0b4887e9d07bfa8ef7f, type: 3}
+  EndGamePopup: {fileID: 2337042476213248001, guid: 808ed84f683dc144bbe19f1ce9266a80, type: 3}

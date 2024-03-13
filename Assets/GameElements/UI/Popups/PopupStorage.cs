@@ -17,6 +17,7 @@ namespace Platformer.UI.Popup
             }
         }
         public DeathPopup DeathPopup;
+        public EndGamePopup EndGamePopup;
 
     }
 }
